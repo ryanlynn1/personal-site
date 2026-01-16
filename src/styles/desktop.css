@@ -1,0 +1,149 @@
+/* ============================================
+   DESKTOP LAYOUT STYLES
+   ============================================ */
+
+.desktop-area {
+  position: relative;
+  z-index: var(--z-desktop);
+  min-height: calc(100vh - 24px);
+  min-height: calc(100dvh - 24px);
+  padding-top: 24px; /* Space for menu bar */
+}
+
+/* ============================================
+   DESKTOP ICONS
+   ============================================ */
+
+.desktop-icons {
+  position: fixed;
+  top: calc(24px + var(--space-lg));
+  left: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  z-index: var(--z-icons);
+}
+
+.desktop-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: var(--space-xs);
+  background: transparent;
+  border: 1px solid transparent;
+  cursor: pointer;
+  width: 80px;
+  text-decoration: none;
+  color: var(--color-text);
+}
+
+.desktop-icon:hover {
+  background: rgba(0, 0, 128, 0.1);
+}
+
+.desktop-icon:focus-visible {
+  outline: none;
+  border: 1px dotted var(--color-text);
+}
+
+/* Selected state */
+.desktop-icon--selected,
+.desktop-icon:focus {
+  background: var(--color-selection);
+}
+
+.desktop-icon--selected .icon-label,
+.desktop-icon:focus .icon-label {
+  background: var(--color-selection);
+  color: var(--color-selection-text);
+}
+
+.icon-image {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.icon-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.icon-label {
+  font-size: var(--font-size-sm);
+  text-align: center;
+  word-break: break-word;
+  line-height: 1.2;
+  padding: 1px 2px;
+  max-width: 76px;
+}
+
+/* ============================================
+   MOBILE DOCK LAYOUT
+   ============================================ */
+
+@media (max-width: 767px) {
+  .desktop-icons {
+    position: fixed;
+    top: auto;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    flex-direction: row;
+    justify-content: center;
+    gap: var(--space-sm);
+    padding: var(--space-sm) var(--space-md);
+    background: rgba(244, 241, 235, 0.95);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid var(--color-border-dark);
+    z-index: var(--z-menu-bar);
+  }
+
+  .desktop-icon {
+    width: 64px;
+    gap: 2px;
+  }
+
+  .icon-image {
+    width: 40px;
+    height: 40px;
+  }
+
+  .icon-image img {
+    width: 100%;
+    height: 100%;
+  }
+
+  .icon-label {
+    font-size: var(--font-size-xs);
+  }
+}
+
+/* ============================================
+   WINDOWS CONTAINER
+   ============================================ */
+
+.windows-container {
+  position: fixed;
+  top: 24px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: var(--z-window-base);
+  pointer-events: none;
+}
+
+.windows-container .window {
+  pointer-events: auto;
+}
+
+@media (max-width: 767px) {
+  .windows-container {
+    bottom: 72px;
+  }
+}

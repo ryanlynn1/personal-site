@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none">
+  <!-- Envelope icon for Contact -->
+  <!-- Envelope body -->
+  <rect x="4" y="12" width="40" height="28" rx="2" fill="#E8E4DC" stroke="#808080" stroke-width="2"/>
+  <!-- Envelope flap (open) -->
+  <path d="M4 14l20 14 20-14" fill="none" stroke="#808080" stroke-width="2" stroke-linejoin="round"/>
+  <!-- Inner envelope shade -->
+  <path d="M6 16l18 12 18-12v22H6z" fill="#F4F1EB"/>
+  <!-- Decorative stamp -->
+  <rect x="32" y="16" width="8" height="10" fill="#4A7C59" stroke="#2A5C39" stroke-width="1"/>
+  <rect x="34" y="18" width="4" height="6" fill="#6A9C79"/>
+  <!-- Red wax seal effect -->
+  <circle cx="24" cy="32" r="6" fill="#C44" stroke="#922" stroke-width="1"/>
+  <text x="24" y="35" text-anchor="middle" fill="#FFF" font-size="8" font-weight="bold" font-family="serif">R</text>
+</svg>

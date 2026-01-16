@@ -1,0 +1,219 @@
+/* ============================================
+   WINDOW CONTENT STYLES
+   Styling for content inside windows
+   ============================================ */
+
+/* ============================================
+   ABOUT WINDOW
+   ============================================ */
+
+.about-header {
+  margin-bottom: var(--space-md);
+}
+
+.about-name {
+  font-size: var(--font-size-2xl);
+  font-weight: 700;
+  margin: 0 0 var(--space-xs) 0;
+  color: var(--color-text);
+}
+
+.about-tagline {
+  font-size: var(--font-size-base);
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+.about-bio {
+  margin-bottom: var(--space-md);
+  line-height: 1.6;
+}
+
+.about-section-title {
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--color-text-muted);
+  margin: var(--space-md) 0 var(--space-sm) 0;
+  border-bottom: 1px solid var(--color-border-mid);
+  padding-bottom: var(--space-xs);
+}
+
+.about-now-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.about-now-list li {
+  padding: var(--space-xs) 0;
+  padding-left: var(--space-md);
+  position: relative;
+}
+
+.about-now-list li::before {
+  content: '>';
+  position: absolute;
+  left: 0;
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+}
+
+/* ============================================
+   PROJECTS WINDOW
+   ============================================ */
+
+.projects-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.project-item {
+  display: flex;
+  gap: var(--space-sm);
+  padding: var(--space-sm);
+  border: 1px solid var(--color-border-mid);
+  background: var(--color-bg);
+}
+
+.project-item:hover {
+  background: var(--color-bg-dark);
+}
+
+.project-icon {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-window-bg);
+  border: 1px solid var(--color-border-mid);
+}
+
+.project-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.project-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.project-name {
+  font-weight: 600;
+  margin: 0 0 2px 0;
+  font-size: var(--font-size-base);
+}
+
+.project-description {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  margin: 0 0 var(--space-xs) 0;
+  line-height: 1.4;
+}
+
+.project-links {
+  display: flex;
+  gap: var(--space-sm);
+  font-size: var(--font-size-sm);
+}
+
+/* ============================================
+   WRITING WINDOW
+   ============================================ */
+
+.writing-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.writing-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-md);
+  padding: var(--space-sm) 0;
+  border-bottom: 1px solid var(--color-border-mid);
+}
+
+.writing-item:last-child {
+  border-bottom: none;
+}
+
+.writing-title {
+  flex: 1;
+  min-width: 0;
+}
+
+.writing-title a {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.writing-date {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+  white-space: nowrap;
+}
+
+.writing-cta {
+  margin-top: var(--space-md);
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--color-border-mid);
+}
+
+/* ============================================
+   CONTACT WINDOW
+   ============================================ */
+
+.contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-lg);
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.contact-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  color: var(--color-text-muted);
+}
+
+.contact-cta {
+  margin-top: var(--space-md);
+}
+
+/* ============================================
+   NOTES WINDOW (Easter egg)
+   ============================================ */
+
+.notes-content {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-sm);
+  white-space: pre-wrap;
+  line-height: 1.6;
+  color: var(--color-text);
+}
+
+/* ============================================
+   EXTERNAL LINK ICON
+   ============================================ */
+
+.external-icon {
+  width: 12px;
+  height: 12px;
+  opacity: 0.6;
+}

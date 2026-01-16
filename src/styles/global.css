@@ -1,0 +1,148 @@
+/* ============================================
+   DESIGN TOKENS
+   ============================================ */
+:root {
+  /* Colors - Warm, paper-like palette */
+  --color-bg: #f4f1eb;
+  --color-bg-dark: #e8e4dc;
+  --color-window-bg: #ffffff;
+  --color-title-bar: #c0c0c0;
+  --color-title-bar-active: #000080;
+  --color-title-bar-gradient-end: #1084d0;
+  --color-text: #222222;
+  --color-text-muted: #666666;
+  --color-text-title: #ffffff;
+  --color-link: #0000ee;
+  --color-link-visited: #551a8b;
+  --color-border-light: #ffffff;
+  --color-border-mid: #c0c0c0;
+  --color-border-dark: #808080;
+  --color-border-darker: #404040;
+  --color-selection: #000080;
+  --color-selection-text: #ffffff;
+
+  /* Shadows */
+  --shadow-window: 4px 4px 0px rgba(0, 0, 0, 0.15);
+  --shadow-pressed: inset 2px 2px 4px rgba(0, 0, 0, 0.2);
+
+  /* Spacing (8px rhythm) */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+
+  /* Typography */
+  --font-system: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --font-mono: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+  --font-size-xs: 11px;
+  --font-size-sm: 12px;
+  --font-size-base: 14px;
+  --font-size-lg: 16px;
+  --font-size-xl: 18px;
+  --font-size-2xl: 24px;
+
+  /* Z-index layers */
+  --z-desktop: 0;
+  --z-icons: 10;
+  --z-window-base: 100;
+  --z-menu-bar: 1000;
+  --z-splash: 9999;
+
+  /* Breakpoints (for reference) */
+  --breakpoint-tablet: 768px;
+  --breakpoint-mobile: 480px;
+}
+
+/* ============================================
+   CSS RESET
+   ============================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-system);
+  font-size: var(--font-size-base);
+  line-height: 1.5;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow: hidden;
+}
+
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+a {
+  color: var(--color-link);
+  text-decoration: underline;
+}
+
+a:visited {
+  color: var(--color-link-visited);
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+/* Selection */
+::selection {
+  background-color: var(--color-selection);
+  color: var(--color-selection-text);
+}
+
+/* Focus visible for keyboard navigation */
+:focus-visible {
+  outline: 2px dotted var(--color-text);
+  outline-offset: 2px;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ============================================
+   REDUCED MOTION
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

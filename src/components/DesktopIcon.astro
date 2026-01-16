@@ -1,0 +1,21 @@
+---
+interface Props {
+  id: string;
+  label: string;
+}
+
+const { id, label } = Astro.props;
+---
+
+<button
+  class="desktop-icon"
+  data-window={id}
+  aria-haspopup="dialog"
+  aria-label={`Open ${label}`}
+  type="button"
+>
+  <div class="icon-image">
+    <slot />
+  </div>
+  <span class="icon-label">{label}</span>
+</button>

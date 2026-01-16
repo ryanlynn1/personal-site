@@ -1,0 +1,101 @@
+/* ============================================
+   BEVELED BUTTONS (Win95 Style)
+   ============================================ */
+
+.retro-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+  background: var(--color-title-bar);
+  border: 2px solid;
+  border-color: var(--color-border-light) var(--color-border-darker)
+    var(--color-border-darker) var(--color-border-light);
+  padding: var(--space-xs) var(--space-md);
+  font-family: var(--font-system);
+  font-size: var(--font-size-base);
+  color: var(--color-text);
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+  min-height: 28px;
+
+  /* Subtle inner highlight */
+  box-shadow:
+    inset 1px 1px 0 rgba(255, 255, 255, 0.5),
+    inset -1px -1px 0 rgba(0, 0, 0, 0.1);
+}
+
+.retro-button:visited {
+  color: var(--color-text);
+}
+
+.retro-button:hover {
+  background: #d0d0d0;
+}
+
+.retro-button:active {
+  /* Invert border colors for pressed state */
+  border-color: var(--color-border-darker) var(--color-border-light)
+    var(--color-border-light) var(--color-border-darker);
+  box-shadow: var(--shadow-pressed);
+
+  /* Shift content to simulate press */
+  padding: calc(var(--space-xs) + 1px) calc(var(--space-md) - 1px)
+    calc(var(--space-xs) - 1px) calc(var(--space-md) + 1px);
+}
+
+.retro-button:focus-visible {
+  outline: 2px dotted var(--color-text);
+  outline-offset: -4px;
+}
+
+/* Primary button variant */
+.retro-button--primary {
+  background: #dfdfdf;
+  font-weight: 600;
+}
+
+.retro-button--primary:hover {
+  background: #e8e8e8;
+}
+
+/* Small button variant */
+.retro-button--small {
+  padding: 2px var(--space-sm);
+  font-size: var(--font-size-sm);
+  min-height: 22px;
+}
+
+/* ============================================
+   CLASSIC LINK STYLES
+   ============================================ */
+
+.classic-link {
+  color: var(--color-link);
+  text-decoration: underline;
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+}
+
+.classic-link:visited {
+  color: var(--color-link-visited);
+}
+
+.classic-link:hover {
+  text-decoration: none;
+}
+
+.classic-link:focus-visible {
+  outline: 1px dotted var(--color-link);
+  outline-offset: 1px;
+}
+
+/* External link indicator */
+.classic-link--external::after {
+  content: ' ↗';
+  font-size: 0.85em;
+}

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none">
+  <!-- ID Card / Badge icon for About -->
+  <rect x="6" y="8" width="36" height="32" rx="2" fill="#E8E4DC" stroke="#606060" stroke-width="2"/>
+  <!-- Photo placeholder -->
+  <rect x="10" y="13" width="14" height="14" rx="1" fill="#B8B4AC" stroke="#808080" stroke-width="1"/>
+  <!-- Person silhouette in photo -->
+  <circle cx="17" cy="18" r="4" fill="#606060"/>
+  <path d="M10 27c0-4 3-6 7-6s7 2 7 6" fill="#606060"/>
+  <!-- Text lines -->
+  <rect x="28" y="14" width="10" height="2" rx="1" fill="#808080"/>
+  <rect x="28" y="19" width="8" height="2" rx="1" fill="#A0A0A0"/>
+  <rect x="28" y="24" width="10" height="2" rx="1" fill="#A0A0A0"/>
+  <!-- Bottom section -->
+  <rect x="10" y="31" width="28" height="4" rx="1" fill="#4A7C59" opacity="0.8"/>
+</svg>

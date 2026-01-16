@@ -1,0 +1,32 @@
+---
+interface Props {
+  href?: string;
+  type?: 'button' | 'submit';
+  variant?: 'default' | 'primary' | 'small';
+  external?: boolean;
+}
+
+const {
+  href,
+  type = 'button',
+  variant = 'default',
+  external = false
+} = Astro.props;
+
+const Tag = href ? 'a' : 'button';
+const variantClass = variant !== 'default' ? `retro-button--${variant}` : '';
+---
+
+<Tag
+  class:list={['retro-button', variantClass]}
+  href={href}
+  type={!href ? type : undefined}
+  target={external ? '_blank' : undefined}
+  rel={external ? 'noopener noreferrer' : undefined}
+>
+  <slot />
+</Tag>
+
+<style>
+  @import '../styles/buttons.css';
+</style>

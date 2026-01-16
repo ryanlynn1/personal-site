@@ -1,0 +1,52 @@
+---
+interface Props {
+  id: string;
+  title: string;
+  width?: number;
+  height?: number;
+  defaultX?: number;
+  defaultY?: number;
+}
+
+const {
+  id,
+  title,
+  width = 420,
+  height = 320,
+  defaultX = 150,
+  defaultY = 80
+} = Astro.props;
+---
+
+<div
+  class="window"
+  id={`window-${id}`}
+  role="dialog"
+  aria-labelledby={`title-${id}`}
+  aria-hidden="true"
+  aria-modal="true"
+  data-default-x={defaultX}
+  data-default-y={defaultY}
+  style={`width: ${width}px; height: ${height}px;`}
+>
+  <div class="title-bar" data-draggable>
+    <span class="title-bar-text" id={`title-${id}`}>{title}</span>
+    <div class="title-bar-controls">
+      <button
+        class="window-control close-button"
+        aria-label={`Close ${title}`}
+        data-close-window={id}
+        type="button"
+      >
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+  </div>
+  <div class="window-content">
+    <slot />
+  </div>
+</div>
+
+<style>
+  @import '../styles/window.css';
+</style>

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none">
+  <!-- Folder with star icon for Projects -->
+  <!-- Folder back -->
+  <path d="M6 14h36v24a2 2 0 01-2 2H8a2 2 0 01-2-2V14z" fill="#E8D888" stroke="#B8A038" stroke-width="2"/>
+  <!-- Folder tab -->
+  <path d="M6 14V10a2 2 0 012-2h10l4 6H6z" fill="#F0E090" stroke="#B8A038" stroke-width="2"/>
+  <!-- Folder front -->
+  <rect x="6" y="16" width="36" height="22" rx="1" fill="#F8E898" stroke="#B8A038" stroke-width="1"/>
+  <!-- Star badge -->
+  <circle cx="36" cy="12" r="8" fill="#4A7C59"/>
+  <path d="M36 6l1.5 4.5h4.5l-3.5 2.5 1.5 4.5-4-3-4 3 1.5-4.5-3.5-2.5h4.5z" fill="#F8E898"/>
+</svg>

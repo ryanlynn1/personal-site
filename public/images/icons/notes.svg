@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none">
+  <!-- Sticky note / Text file icon for Notes.txt Easter egg -->
+  <!-- Shadow -->
+  <rect x="10" y="10" width="32" height="36" rx="1" fill="#C0C0C0"/>
+  <!-- Note paper -->
+  <rect x="6" y="6" width="32" height="36" rx="1" fill="#FFF8B8" stroke="#C0A000" stroke-width="2"/>
+  <!-- Folded corner -->
+  <path d="M30 6v10h8" fill="#E8E080" stroke="#C0A000" stroke-width="1"/>
+  <path d="M30 6l8 10" fill="none" stroke="#C0A000" stroke-width="1"/>
+  <!-- Text lines (like code/plain text) -->
+  <text x="10" y="22" fill="#606060" font-family="monospace" font-size="6">.txt</text>
+  <rect x="10" y="26" width="20" height="2" rx="0.5" fill="#808080"/>
+  <rect x="10" y="31" width="16" height="2" rx="0.5" fill="#A0A0A0"/>
+  <rect x="10" y="36" width="18" height="2" rx="0.5" fill="#A0A0A0"/>
+</svg>
