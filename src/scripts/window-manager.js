@@ -59,35 +59,15 @@ class WindowManager {
 
   bindIconClicks() {
     const icons = document.querySelectorAll('.desktop-icon');
-    let clickTimer = null;
-    let clickCount = 0;
 
     icons.forEach((icon) => {
       icon.addEventListener('click', () => {
         const windowId = icon.dataset.window;
         if (!windowId) return;
 
-        if (this.isMobile) {
-          // Mobile: single click opens
-          this.openWindow(windowId);
-          return;
-        }
-
-        // Desktop: double-click to open
-        clickCount++;
-
-        if (clickCount === 1) {
-          // Single click: select icon
-          this.selectIcon(icon);
-          clickTimer = setTimeout(() => {
-            clickCount = 0;
-          }, 300);
-        } else if (clickCount === 2) {
-          // Double click: open window
-          clearTimeout(clickTimer);
-          clickCount = 0;
-          this.openWindow(windowId);
-        }
+        // Single click opens window on both desktop and mobile
+        this.selectIcon(icon);
+        this.openWindow(windowId);
       });
 
       // Also support Enter key

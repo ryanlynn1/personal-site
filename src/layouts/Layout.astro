@@ -8,6 +8,16 @@ const {
   title = 'Ryan Lynn | ryanlynn.ai',
   description = 'Personal website of Ryan Lynn - Builder, Creator, Technologist'
 } = Astro.props;
+
+// Import all CSS globally
+import '../styles/global.css';
+import '../styles/texture.css';
+import '../styles/desktop.css';
+import '../styles/menubar.css';
+import '../styles/window.css';
+import '../styles/splash.css';
+import '../styles/buttons.css';
+import '../styles/content.css';
 ---
 
 <!DOCTYPE html>
@@ -26,9 +36,6 @@ const {
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-
-    <!-- Styles -->
-    <link rel="stylesheet" href="/src/styles/global.css" />
   </head>
   <body>
     <slot />
