@@ -43,101 +43,85 @@ import Button from '../components/Button.astro';
     <!-- Windows Container -->
     <div class="windows-container">
       <!-- About Window -->
-      <Window id="about" title="About" width={440} height={380} defaultX={180} defaultY={60}>
+      <Window id="about" title="About" width={650} height={520} defaultX={300} defaultY={60}>
         <div class="about-header">
           <h1 class="about-name">Ryan Lynn</h1>
-          <!-- PLACEHOLDER: Update with your actual tagline -->
-          <p class="about-tagline">Builder, Creator, Technologist</p>
+          <p class="about-tagline">Builder & Entrepreneur | AI at Michigan Ross</p>
         </div>
 
-        <!-- PLACEHOLDER: Update with your actual bio -->
         <p class="about-bio">
-          I build things at the intersection of technology and creativity. Currently focused on
-          [what you're working on]. Previously [relevant background]. I believe in [core principle or approach].
+          I've been starting businesses since "Ryan's Garage Sale" as a kid. After earning Top Performer of the Year at SS&C Intralinks, I left to build AI companies. Currently pursuing my MBA with a concentration in Artificial Intelligence at the University of Michigan Ross School of Business (graduating May 2026).
         </p>
+
+        <div class="about-timeline">
+          <div class="timeline-photo">
+            <img src="/founder.JPG" alt="Ryan's Garage Sale as a kid" />
+            <span>The early days</span>
+          </div>
+          <div class="timeline-photo">
+            <img src="/award.jpg" alt="Top Performer award at SS&C Intralinks" />
+            <span>SS&C Intralinks</span>
+          </div>
+          <div class="timeline-photo">
+            <img src="/building.jpg" alt="Building OuterEdge and StartingIt" />
+            <span>Building</span>
+          </div>
+        </div>
 
         <h2 class="about-section-title">Now</h2>
         <ul class="about-now-list">
-          <!-- PLACEHOLDER: Update with your current focus areas -->
-          <li>Building [current project] — [one-line description]</li>
-          <li>Exploring [interest/technology area]</li>
-          <li>Learning [skill or topic you're diving into]</li>
-          <li>Based in [location]</li>
+          <li>Building OuterEdge and StartingIt</li>
+          <li>Zell Entrepreneur at Ross School of Business</li>
+          <li>VP of Education, Zell Lurie Commercialization Fund — teaching VC & entrepreneurship</li>
+          <li>Based in Ann Arbor, Michigan</li>
         </ul>
       </Window>
 
       <!-- Projects Window -->
-      <Window id="projects" title="Projects" width={480} height={420} defaultX={220} defaultY={90}>
+      <Window id="projects" title="Projects" width={650} height={450} defaultX={300} defaultY={80}>
         <div class="projects-list">
-          <!-- PLACEHOLDER: Update with your actual projects -->
 
           <div class="project-item">
             <div class="project-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-              </svg>
+              <img src="/startingit-agent-logo.png" alt="The Bullpen logo" />
+            </div>
+            <div class="project-content">
+              <h3 class="project-name">The Bullpen</h3>
+              <p class="project-description">
+                AI platform for middle-market deal teams. Secure, compliant AI tailored to private files and workflows—internal research, external research, and team collaboration.
+              </p>
+              <div class="project-links">
+                <a href="https://thebullpen.ai/" class="classic-link classic-link--external" target="_blank" rel="noopener noreferrer">Site</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-item">
+            <div class="project-icon">
+              <img src="/outeredge-logo-white-circle-green-dot-black-fill.png" alt="OuterEdge logo" />
             </div>
             <div class="project-content">
               <h3 class="project-name">OuterEdge</h3>
               <p class="project-description">
-                [Description of OuterEdge — what it does and your role]
+                AI transformation consultancy helping enterprises and startups build, grow, and transform with AI at startup speed. Product, process, and people transformation—shipped in weeks, not months.
               </p>
               <div class="project-links">
-                <a href="#" class="classic-link classic-link--external">Site</a>
+                <a href="https://www.outeredge.ai/" class="classic-link classic-link--external" target="_blank" rel="noopener noreferrer">Site</a>
               </div>
             </div>
           </div>
 
           <div class="project-item">
             <div class="project-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
-              </svg>
+              <img src="/startingit-logo-png-new.png" alt="StartingIt logo" />
             </div>
             <div class="project-content">
               <h3 class="project-name">StartingIt</h3>
               <p class="project-description">
-                [Description of StartingIt — what it does and your role]
+                Your AI co-founder. From idea to revenue—StartIt generates personalized startup ideas, BuildIt helps you ship an MVP in a weekend, and GrowIt creates custom growth strategies.
               </p>
               <div class="project-links">
-                <a href="#" class="classic-link classic-link--external">Site</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="project-item">
-            <div class="project-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="10"/>
-                <path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/>
-              </svg>
-            </div>
-            <div class="project-content">
-              <h3 class="project-name">Bullpen</h3>
-              <p class="project-description">
-                [Description of Bullpen — what it does and your role]
-              </p>
-              <div class="project-links">
-                <a href="#" class="classic-link classic-link--external">Site</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="project-item">
-            <div class="project-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="3" y="3" width="18" height="18" rx="2"/>
-                <path d="M3 9h18M9 21V9"/>
-              </svg>
-            </div>
-            <div class="project-content">
-              <h3 class="project-name">[Project Name]</h3>
-              <p class="project-description">
-                [Description of project]
-              </p>
-              <div class="project-links">
-                <a href="#" class="classic-link classic-link--external">Demo</a>
-                <a href="#" class="classic-link classic-link--external">GitHub</a>
+                <a href="https://www.startingit.ai/" class="classic-link classic-link--external" target="_blank" rel="noopener noreferrer">Site</a>
               </div>
             </div>
           </div>
@@ -146,7 +130,7 @@ import Button from '../components/Button.astro';
       </Window>
 
       <!-- Writing Window -->
-      <Window id="writing" title="Writing" width={420} height={360} defaultX={260} defaultY={120}>
+      <Window id="writing" title="Writing" width={650} height={400} defaultX={300} defaultY={80}>
         <div class="writing-list">
           <!-- PLACEHOLDER: Update with your actual posts -->
 
@@ -197,7 +181,7 @@ import Button from '../components/Button.astro';
       </Window>
 
       <!-- Contact Window -->
-      <Window id="contact" title="Contact" width={340} height={280} defaultX={300} defaultY={150}>
+      <Window id="contact" title="Contact" width={650} height={320} defaultX={300} defaultY={80}>
         <div class="contact-list">
           <!-- PLACEHOLDER: Update with your actual links -->
 
@@ -240,7 +224,7 @@ import Button from '../components/Button.astro';
       </Window>
 
       <!-- Notes.txt Easter Egg Window -->
-      <Window id="notes" title="Notes.txt" width={360} height={300} defaultX={340} defaultY={180}>
+      <Window id="notes" title="Notes.txt" width={650} height={380} defaultX={300} defaultY={80}>
         <pre class="notes-content">
 // Notes.txt
 // =========
