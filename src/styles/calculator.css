@@ -1,0 +1,84 @@
+/* ============================================
+   CALCULATOR STYLES
+   Win95-style calculator widget
+   ============================================ */
+
+.calculator {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--color-window-bg);
+  padding: var(--space-xs);
+  gap: var(--space-xs);
+}
+
+.calc-display {
+  width: 100%;
+  text-align: right;
+  font-family: var(--font-mono);
+  font-size: 22px;
+  padding: var(--space-sm) var(--space-sm);
+  border: 1px solid;
+  border-color: var(--color-border-darker) var(--color-border-light)
+    var(--color-border-light) var(--color-border-darker);
+  background: #d4e8c0;
+  color: #1a1a1a;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.calc-buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+  flex: 1;
+}
+
+.calc-btn {
+  font-size: 16px;
+  font-family: var(--font-system);
+  background: var(--color-window-bg);
+  border: 2px solid;
+  border-color: var(--color-border-light) var(--color-border-darker)
+    var(--color-border-darker) var(--color-border-light);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 32px;
+  color: var(--color-text);
+}
+
+.calc-btn:hover {
+  background: #e0e0e0;
+}
+
+.calc-btn:active {
+  border-color: var(--color-border-darker) var(--color-border-light)
+    var(--color-border-light) var(--color-border-darker);
+  box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.calc-btn--wide {
+  grid-column: span 2;
+}
+
+.calc-btn--op {
+  background: #e8e0d8;
+  font-weight: 700;
+}
+
+.calc-btn--fn {
+  background: #d8d0c8;
+  font-size: 14px;
+}
+
+.calc-btn--equals {
+  background: #d0c8c0;
+  font-weight: 700;
+}
+
+/* Override window content padding for calculator */
+#window-calc .window-content {
+  padding: 0;
+}

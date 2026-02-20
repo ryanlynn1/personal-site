@@ -1,0 +1,41 @@
+---
+// BootSequence - Multi-stage BIOS/loading/dial-up boot animation
+---
+
+<div class="boot" id="boot" role="presentation" aria-label="Boot sequence">
+  <button class="boot-skip" type="button" aria-label="Skip boot sequence">Skip</button>
+
+  <!-- Stage 1: BIOS POST -->
+  <div class="boot-stage" id="boot-bios">
+    <pre class="bios-text" id="bios-text"></pre>
+  </div>
+
+  <!-- Stage 2: Loading bar -->
+  <div class="boot-stage" id="boot-loading">
+    <div class="loading-logo">
+      <pre class="loading-ascii" id="loading-ascii"></pre>
+    </div>
+    <div class="loading-bar-track">
+      <div class="loading-bar-fill" id="loading-bar"></div>
+    </div>
+    <p class="loading-text" id="loading-text">Loading system files...</p>
+  </div>
+
+  <!-- Stage 3: Dial-up connection -->
+  <div class="boot-stage" id="boot-dialup">
+    <pre class="dialup-text" id="dialup-text"></pre>
+    <div class="dialup-signal" id="dialup-signal">
+      <div class="signal-bar"></div>
+      <div class="signal-bar"></div>
+      <div class="signal-bar"></div>
+      <div class="signal-bar"></div>
+      <div class="signal-bar"></div>
+    </div>
+  </div>
+
+  <p class="boot-hint">Press any key or click to skip</p>
+</div>
+
+<script>
+  import '../scripts/boot-sequence.js';
+</script>

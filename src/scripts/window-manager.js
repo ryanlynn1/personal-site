@@ -21,6 +21,10 @@ class WindowManager {
       this.windows.set(id, {
         element: el,
         isOpen: false,
+        isMinimized: false,
+        isMaximized: false,
+        savedPosition: null,
+        savedSize: null,
         position: { x: defaultX, y: defaultY },
         zIndex: 100,
       });
@@ -34,6 +38,22 @@ class WindowManager {
       btn.addEventListener('click', (e) => {
         e.stopPropagation();
         this.closeWindow(btn.dataset.closeWindow);
+      });
+    });
+
+    // Bind minimize buttons
+    document.querySelectorAll('[data-minimize-window]').forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        this.minimizeWindow(btn.dataset.minimizeWindow);
+      });
+    });
+
+    // Bind maximize buttons
+    document.querySelectorAll('[data-maximize-window]').forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        this.maximizeWindow(btn.dataset.maximizeWindow);
       });
     });
 
@@ -115,6 +135,9 @@ class WindowManager {
     // Bring to front
     this.bringToFront(id);
 
+    // Update taskbar
+    this.updateTaskbar();
+
     // Focus first focusable element
     requestAnimationFrame(() => {
       const focusable = win.element.querySelector(
@@ -139,6 +162,9 @@ class WindowManager {
       this.activeWindow = null;
     }
 
+    // Update taskbar
+    this.updateTaskbar();
+
     // Return focus to desktop icon
     const icon = document.querySelector(`[data-window="${id}"]`);
     if (icon) {
@@ -159,6 +185,9 @@ class WindowManager {
       w.element.classList.toggle('window--active', wId === id);
     });
     this.activeWindow = id;
+
+    // Update taskbar active states
+    this.updateTaskbar();
   }
 
   setPosition(id, x, y) {
@@ -171,11 +200,103 @@ class WindowManager {
     const maxY = window.innerHeight - Math.min(rect.height, 50);
 
     x = Math.max(0, Math.min(x, maxX));
-    y = Math.max(24, Math.min(y, maxY)); // 24px for menu bar
+    y = Math.max(0, Math.min(y, maxY));
 
     win.position = { x, y };
     win.element.style.left = `${x}px`;
     win.element.style.top = `${y}px`;
+  }
+
+  updateTaskbar() {
+    const container = document.getElementById('taskbar-windows');
+    if (!container) return;
+
+    container.innerHTML = '';
+    this.windows.forEach((win, id) => {
+      if (!win.isOpen) return;
+
+      const btn = document.createElement('button');
+      btn.className = 'taskbar-window-btn';
+      btn.classList.toggle('taskbar-window-btn--active', id === this.activeWindow && !win.isMinimized);
+      if (win.isMinimized) btn.classList.add('taskbar-window-btn--minimized');
+      btn.textContent = win.element.querySelector('.title-bar-text')?.textContent || id;
+
+      btn.addEventListener('click', () => {
+        if (win.isMinimized) {
+          this.restoreWindow(id);
+        } else if (id === this.activeWindow) {
+          this.minimizeWindow(id);
+        } else {
+          this.bringToFront(id);
+        }
+      });
+
+      container.appendChild(btn);
+    });
+  }
+
+  minimizeWindow(id) {
+    const win = this.windows.get(id);
+    if (!win || !win.isOpen) return;
+
+    win.isMinimized = true;
+    win.element.setAttribute('aria-hidden', 'true');
+    win.element.classList.remove('window--active');
+
+    // Find next visible window to activate
+    let nextActive = null;
+    let highestZ = 0;
+    this.windows.forEach((w, wId) => {
+      if (w.isOpen && !w.isMinimized && w.zIndex > highestZ) {
+        highestZ = w.zIndex;
+        nextActive = wId;
+      }
+    });
+
+    if (nextActive) {
+      this.bringToFront(nextActive);
+    } else {
+      this.activeWindow = null;
+    }
+
+    this.updateTaskbar();
+  }
+
+  restoreWindow(id) {
+    const win = this.windows.get(id);
+    if (!win) return;
+
+    win.isMinimized = false;
+    win.element.setAttribute('aria-hidden', 'false');
+    this.bringToFront(id);
+    this.updateTaskbar();
+  }
+
+  maximizeWindow(id) {
+    const win = this.windows.get(id);
+    if (!win || !win.isOpen) return;
+
+    if (win.isMaximized) {
+      // Restore to saved position/size
+      win.isMaximized = false;
+      win.element.classList.remove('window--maximized');
+      if (win.savedPosition) {
+        this.setPosition(id, win.savedPosition.x, win.savedPosition.y);
+      }
+      if (win.savedSize) {
+        win.element.style.width = win.savedSize.width;
+        win.element.style.height = win.savedSize.height;
+      }
+    } else {
+      // Save current state and maximize
+      win.savedPosition = { ...win.position };
+      win.savedSize = {
+        width: win.element.style.width,
+        height: win.element.style.height,
+      };
+      win.isMaximized = true;
+      win.element.classList.add('window--maximized');
+    }
   }
 
   setupDragging() {

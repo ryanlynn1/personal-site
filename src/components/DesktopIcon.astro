@@ -2,9 +2,11 @@
 interface Props {
   id: string;
   label: string;
+  x?: number;
+  y?: number;
 }
 
-const { id, label } = Astro.props;
+const { id, label, x = 24, y = 24 } = Astro.props;
 ---
 
 <button
@@ -13,6 +15,7 @@ const { id, label } = Astro.props;
   aria-haspopup="dialog"
   aria-label={`Open ${label}`}
   type="button"
+  style={`--icon-x: ${x}px; --icon-y: ${y}px;`}
 >
   <div class="icon-image">
     <slot />

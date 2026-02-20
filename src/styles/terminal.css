@@ -1,0 +1,73 @@
+/* ============================================
+   TERMINAL STYLES
+   DOS-style command prompt
+   ============================================ */
+
+.terminal {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: #0c0c0c;
+  color: #cccccc;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.terminal-output {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-xs);
+}
+
+.terminal-output pre {
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.terminal-input-line {
+  display: flex;
+  align-items: center;
+  padding: 0 var(--space-xs) var(--space-xs);
+  flex-shrink: 0;
+}
+
+.terminal-prompt {
+  white-space: nowrap;
+  margin-right: var(--space-xs);
+  color: #cccccc;
+}
+
+.terminal-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: #cccccc;
+  font: inherit;
+  outline: none;
+  caret-color: #cccccc;
+  padding: 0;
+}
+
+/* Override window content padding for terminal */
+#window-terminal .window-content {
+  padding: 0;
+  background: #0c0c0c;
+}
+
+/* Terminal scrollbar */
+.terminal-output::-webkit-scrollbar {
+  width: 12px;
+}
+
+.terminal-output::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+
+.terminal-output::-webkit-scrollbar-thumb {
+  background: #444;
+  border: 1px solid #333;
+}

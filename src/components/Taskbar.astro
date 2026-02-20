@@ -1,0 +1,53 @@
+---
+// Taskbar - Win95-style bottom taskbar with Start button, open windows, and clock
+---
+
+<footer class="taskbar" id="taskbar">
+  <button class="taskbar-start" id="start-button" type="button" aria-haspopup="true" aria-expanded="false">
+    <svg class="start-icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+      <rect x="1" y="1" width="6" height="6" fill="#FF0000"/>
+      <rect x="9" y="1" width="6" height="6" fill="#00AA00"/>
+      <rect x="1" y="9" width="6" height="6" fill="#0000FF"/>
+      <rect x="9" y="9" width="6" height="6" fill="#FFAA00"/>
+    </svg>
+    <span>Start</span>
+  </button>
+
+  <div class="taskbar-divider"></div>
+
+  <div class="taskbar-windows" id="taskbar-windows" aria-label="Open windows">
+    <!-- Populated dynamically by window-manager.js -->
+  </div>
+
+  <div class="taskbar-divider"></div>
+
+  <div class="taskbar-tray" id="taskbar-tray">
+    <time class="taskbar-clock" id="taskbar-clock" aria-live="polite" aria-label="Current time">
+      --:--
+    </time>
+  </div>
+</footer>
+
+<script>
+  function updateClock() {
+    const clock = document.getElementById('taskbar-clock');
+    if (!clock) return;
+
+    const now = new Date();
+    const hours = now.getHours();
+    const minutes = now.getMinutes().toString().padStart(2, '0');
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+    const displayHours = hours % 12 || 12;
+
+    clock.textContent = `${displayHours}:${minutes} ${ampm}`;
+  }
+
+  updateClock();
+  setInterval(updateClock, 60000);
+
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) {
+      updateClock();
+    }
+  });
+</script>

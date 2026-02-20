@@ -1,0 +1,13 @@
+<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Monitor frame -->
+  <rect x="4" y="4" width="40" height="32" rx="2" fill="#1a1a1a" stroke="#333" stroke-width="1.5"/>
+  <!-- Screen -->
+  <rect x="7" y="7" width="34" height="26" fill="#0c0c0c"/>
+  <!-- Prompt text -->
+  <text x="10" y="20" font-family="monospace" font-size="9" fill="#cccccc">C:\&gt;_</text>
+  <!-- Previous line -->
+  <text x="10" y="13" font-family="monospace" font-size="6" fill="#666">dir /w</text>
+  <!-- Base -->
+  <rect x="16" y="36" width="16" height="3" fill="#444"/>
+  <rect x="12" y="39" width="24" height="2" rx="1" fill="#555"/>
+</svg>

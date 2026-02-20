@@ -6,6 +6,8 @@ interface Props {
   height?: number;
   defaultX?: number;
   defaultY?: number;
+  toolbar?: 'menubar' | 'editor' | 'browser' | 'email' | 'notepad' | 'none';
+  statusText?: string;
 }
 
 const {
@@ -14,7 +16,9 @@ const {
   width = 420,
   height = 320,
   defaultX = 150,
-  defaultY = 80
+  defaultY = 80,
+  toolbar = 'none',
+  statusText,
 } = Astro.props;
 ---
 
@@ -33,17 +37,89 @@ const {
     <span class="title-bar-text" id={`title-${id}`}>{title}</span>
     <div class="title-bar-controls">
       <button
+        class="window-control minimize-button"
+        aria-label={`Minimize ${title}`}
+        data-minimize-window={id}
+        type="button"
+      >
+        <span aria-hidden="true">_</span>
+      </button>
+      <button
+        class="window-control maximize-button"
+        aria-label={`Maximize ${title}`}
+        data-maximize-window={id}
+        type="button"
+      >
+        <span aria-hidden="true">&square;</span>
+      </button>
+      <button
         class="window-control close-button"
         aria-label={`Close ${title}`}
         data-close-window={id}
         type="button"
       >
-        <span aria-hidden="true">×</span>
+        <span aria-hidden="true">&times;</span>
       </button>
     </div>
   </div>
+
+  {toolbar === 'menubar' && (
+    <div class="window-toolbar">
+      <span class="toolbar-menu-item">File</span>
+      <span class="toolbar-menu-item">Edit</span>
+      <span class="toolbar-menu-item">View</span>
+      <span class="toolbar-menu-item">Help</span>
+    </div>
+  )}
+
+  {toolbar === 'editor' && (
+    <div class="window-toolbar">
+      <span class="toolbar-menu-item">File</span>
+      <span class="toolbar-menu-item">Edit</span>
+      <span class="toolbar-menu-item">Format</span>
+      <span class="toolbar-menu-item">View</span>
+      <span class="toolbar-menu-item">Help</span>
+    </div>
+  )}
+
+  {toolbar === 'notepad' && (
+    <div class="window-toolbar">
+      <span class="toolbar-menu-item">File</span>
+      <span class="toolbar-menu-item">Edit</span>
+      <span class="toolbar-menu-item">Search</span>
+      <span class="toolbar-menu-item">Help</span>
+    </div>
+  )}
+
+  {toolbar === 'browser' && (
+    <div class="window-toolbar window-toolbar--browser">
+      <button class="toolbar-btn" disabled aria-label="Back">&#9664;</button>
+      <button class="toolbar-btn" disabled aria-label="Forward">&#9654;</button>
+      <button class="toolbar-btn" disabled aria-label="Stop">&#10005;</button>
+      <div class="toolbar-address-bar">
+        <span class="address-prefix">Address</span>
+        <span class="address-text">C:\Ryan\Projects\</span>
+      </div>
+    </div>
+  )}
+
+  {toolbar === 'email' && (
+    <div class="window-toolbar window-toolbar--email">
+      <button class="toolbar-btn" disabled>New</button>
+      <button class="toolbar-btn" disabled>Reply</button>
+      <button class="toolbar-btn" disabled>Forward</button>
+      <span class="toolbar-separator"></span>
+      <button class="toolbar-btn" disabled>Send</button>
+    </div>
+  )}
+
   <div class="window-content">
     <slot />
   </div>
-</div>
 
+  {statusText && (
+    <div class="window-statusbar">
+      <span class="statusbar-text">{statusText}</span>
+    </div>
+  )}
+</div>

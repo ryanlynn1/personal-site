@@ -1,0 +1,276 @@
+/* ============================================
+   BOOT SEQUENCE STYLES
+   Multi-stage BIOS/loading/dial-up boot
+   ============================================ */
+
+.boot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: var(--z-splash);
+  background: #0a0a0a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+/* CRT scanline overlay */
+.boot::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.15) 2px,
+    rgba(0, 0, 0, 0.15) 4px
+  );
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Subtle CRT glow */
+.boot::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0, 255, 0, 0.03) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Fade out */
+.boot--fade-out {
+  opacity: 0;
+  transition: opacity 0.6s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .boot--fade-out {
+    transition: none;
+  }
+}
+
+/* Skip button */
+.boot-skip {
+  position: absolute;
+  top: var(--space-md);
+  right: var(--space-md);
+  background: transparent;
+  border: 1px solid rgba(51, 255, 51, 0.3);
+  padding: var(--space-xs) var(--space-sm);
+  font-size: var(--font-size-sm);
+  font-family: var(--font-mono);
+  color: rgba(51, 255, 51, 0.6);
+  cursor: pointer;
+  z-index: 10;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.boot-skip:hover {
+  color: #33ff33;
+  border-color: #33ff33;
+}
+
+.boot-skip:focus-visible {
+  outline: 1px solid #33ff33;
+  outline-offset: 2px;
+}
+
+/* Hint text */
+.boot-hint {
+  position: absolute;
+  bottom: var(--space-lg);
+  font-size: var(--font-size-xs);
+  font-family: var(--font-mono);
+  color: rgba(51, 255, 51, 0.3);
+  z-index: 3;
+}
+
+/* ============================================
+   STAGES (hidden by default, shown via JS)
+   ============================================ */
+
+.boot-stage {
+  display: none;
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+}
+
+.boot-stage--active {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ============================================
+   STAGE 1: BIOS POST
+   ============================================ */
+
+#boot-bios {
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: var(--space-lg);
+}
+
+.bios-text {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.4;
+  color: #33ff33;
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+  max-height: 100%;
+  overflow-y: auto;
+  width: 100%;
+}
+
+/* ============================================
+   STAGE 2: LOADING BAR
+   ============================================ */
+
+#boot-loading {
+  gap: var(--space-lg);
+  padding: var(--space-lg);
+}
+
+.loading-logo {
+  text-align: center;
+}
+
+.loading-ascii {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  line-height: 1.2;
+  color: #33ff33;
+  margin: 0;
+  white-space: pre;
+}
+
+@media (max-width: 500px) {
+  .loading-ascii {
+    font-size: 9px;
+  }
+}
+
+.loading-bar-track {
+  width: min(400px, 80vw);
+  height: 20px;
+  border: 1px solid #33ff33;
+  background: transparent;
+  padding: 2px;
+}
+
+.loading-bar-fill {
+  height: 100%;
+  width: 0%;
+  background: #33ff33;
+  transition: width 0.2s ease-out;
+  box-shadow: 0 0 8px rgba(51, 255, 51, 0.4);
+}
+
+.loading-text {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-sm);
+  color: rgba(51, 255, 51, 0.8);
+}
+
+/* ============================================
+   STAGE 3: DIAL-UP
+   ============================================ */
+
+#boot-dialup {
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-lg);
+  gap: var(--space-md);
+}
+
+.dialup-text {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.5;
+  color: #33ff33;
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+  max-width: 500px;
+  width: 100%;
+  max-height: 70vh;
+  overflow-y: auto;
+  text-align: left;
+}
+
+/* Dial-up text color variants */
+.dialup-dialing {
+  color: #ffff33;
+  animation: blink-text 0.5s step-end 3;
+}
+
+.dialup-noise {
+  color: #ff8833;
+  font-style: italic;
+  opacity: 0.7;
+}
+
+.dialup-connect {
+  color: #33ffff;
+  font-weight: bold;
+}
+
+.dialup-success {
+  color: #33ff33;
+  font-weight: bold;
+}
+
+@keyframes blink-text {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Signal strength bars */
+.dialup-signal {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 24px;
+}
+
+.signal-bar {
+  width: 6px;
+  background: rgba(51, 255, 51, 0.15);
+  border: 1px solid rgba(51, 255, 51, 0.3);
+  transition: background 0.3s, box-shadow 0.3s;
+}
+
+.signal-bar:nth-child(1) { height: 6px; }
+.signal-bar:nth-child(2) { height: 10px; }
+.signal-bar:nth-child(3) { height: 14px; }
+.signal-bar:nth-child(4) { height: 18px; }
+.signal-bar:nth-child(5) { height: 22px; }
+
+.signal-bar--active {
+  background: #33ff33;
+  box-shadow: 0 0 6px rgba(51, 255, 51, 0.5);
+}
+
+/* ============================================
+   DESKTOP HIDDEN STATE
+   ============================================ */
+
+.desktop--hidden {
+  visibility: hidden;
+}

@@ -1,49 +1,59 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import SplashScreen from '../components/SplashScreen.astro';
-import MenuBar from '../components/MenuBar.astro';
+import BootSequence from '../components/BootSequence.astro';
+import Taskbar from '../components/Taskbar.astro';
 import Desktop from '../components/Desktop.astro';
 import DesktopIcon from '../components/DesktopIcon.astro';
 import Window from '../components/Window.astro';
 import Button from '../components/Button.astro';
+import StartMenu from '../components/StartMenu.astro';
 ---
 
 <Layout>
-  <!-- Splash Screen -->
-  <SplashScreen />
+  <!-- Boot Sequence -->
+  <BootSequence />
 
-  <!-- Menu Bar -->
-  <MenuBar />
+  <!-- Taskbar + Start Menu -->
+  <Taskbar />
+  <StartMenu />
 
   <!-- Desktop -->
   <Desktop>
     <!-- Desktop Icons -->
     <nav class="desktop-icons" aria-label="Desktop icons">
-      <DesktopIcon id="about" label="About">
+      <DesktopIcon id="about" label="About" x={32} y={32}>
         <img src="/images/icons/about.svg" alt="" />
       </DesktopIcon>
 
-      <DesktopIcon id="projects" label="Projects">
+      <DesktopIcon id="projects" label="Projects" x={32} y={140}>
         <img src="/images/icons/projects.svg" alt="" />
       </DesktopIcon>
 
-      <DesktopIcon id="writing" label="Writing">
+      <DesktopIcon id="writing" label="Writing" x={32} y={248}>
         <img src="/images/icons/writing.svg" alt="" />
       </DesktopIcon>
 
-      <DesktopIcon id="contact" label="Contact">
+      <DesktopIcon id="contact" label="Contact" x={32} y={356}>
         <img src="/images/icons/contact.svg" alt="" />
       </DesktopIcon>
 
-      <DesktopIcon id="notes" label="Notes.txt">
+      <DesktopIcon id="notes" label="Notes.txt" x={32} y={464}>
         <img src="/images/icons/notes.svg" alt="" />
+      </DesktopIcon>
+
+      <DesktopIcon id="terminal" label="Terminal" x={32} y={572}>
+        <img src="/images/icons/terminal.svg" alt="" />
+      </DesktopIcon>
+
+      <DesktopIcon id="calc" label="Calculator" x={32} y={680}>
+        <img src="/images/icons/calculator.svg" alt="" />
       </DesktopIcon>
     </nav>
 
     <!-- Windows Container -->
     <div class="windows-container">
       <!-- About Window -->
-      <Window id="about" title="About" width={650} height={520} defaultX={300} defaultY={60}>
+      <Window id="about" title="About - Ryan Lynn" toolbar="menubar" statusText="Ready" width={650} height={520} defaultX={300} defaultY={60}>
         <div class="about-header">
           <h1 class="about-name">Ryan Lynn</h1>
           <p class="about-tagline">Builder & Entrepreneur | AI at Michigan Ross</p>
@@ -78,7 +88,7 @@ import Button from '../components/Button.astro';
       </Window>
 
       <!-- Projects Window -->
-      <Window id="projects" title="Projects" width={650} height={450} defaultX={300} defaultY={80}>
+      <Window id="projects" title="Projects" toolbar="browser" statusText="3 items" width={650} height={450} defaultX={300} defaultY={80}>
         <div class="projects-list">
 
           <div class="project-item">
@@ -130,7 +140,7 @@ import Button from '../components/Button.astro';
       </Window>
 
       <!-- Writing Window -->
-      <Window id="writing" title="Writing" width={650} height={400} defaultX={300} defaultY={80}>
+      <Window id="writing" title="Writing" toolbar="editor" statusText="3 articles" width={650} height={400} defaultX={300} defaultY={80}>
         <div class="writing-list">
           <!-- PLACEHOLDER: Update with your actual posts -->
 
@@ -181,7 +191,7 @@ import Button from '../components/Button.astro';
       </Window>
 
       <!-- Contact Window -->
-      <Window id="contact" title="Contact" width={650} height={320} defaultX={300} defaultY={80}>
+      <Window id="contact" title="Inbox - Contact" toolbar="email" statusText="Connected" width={650} height={340} defaultX={300} defaultY={80}>
         <div class="contact-list">
           <!-- PLACEHOLDER: Update with your actual links -->
 
@@ -224,7 +234,7 @@ import Button from '../components/Button.astro';
       </Window>
 
       <!-- Notes.txt Easter Egg Window -->
-      <Window id="notes" title="Notes.txt" width={650} height={380} defaultX={300} defaultY={80}>
+      <Window id="notes" title="Notes.txt - Notepad" toolbar="notepad" statusText="Ln 1, Col 1" width={650} height={380} defaultX={300} defaultY={80}>
         <pre class="notes-content">
 // Notes.txt
 // =========
@@ -249,7 +259,59 @@ or just email me directly.
 P.S. This site was built with Astro
 and vanilla JS. No frameworks were
 harmed in its creation.
+
+P.P.S. Try the Terminal icon for
+a command prompt Easter egg.
         </pre>
+      </Window>
+
+      <!-- Terminal (Easter Egg) -->
+      <Window id="terminal" title="Command Prompt" toolbar="none" width={560} height={380} defaultX={200} defaultY={100}>
+        <div class="terminal">
+          <div class="terminal-output" id="terminal-output">
+            <pre>RyanOS Terminal v1.0
+Type 'help' for available commands.
+
+</pre>
+          </div>
+          <div class="terminal-input-line">
+            <span class="terminal-prompt">C:\RYAN&gt;</span>
+            <input type="text" class="terminal-input" id="terminal-input"
+                   autocomplete="off" spellcheck="false" aria-label="Terminal input" />
+          </div>
+        </div>
+      </Window>
+
+      <!-- Calculator (Easter Egg) -->
+      <Window id="calc" title="Calculator" toolbar="none" width={240} height={340} defaultX={500} defaultY={120}>
+        <div class="calculator" id="calculator">
+          <input type="text" class="calc-display" id="calc-display" readonly value="0" aria-label="Calculator display" />
+          <div class="calc-buttons">
+            <button class="calc-btn calc-btn--fn" data-action="clear">C</button>
+            <button class="calc-btn calc-btn--fn" data-action="backspace">&larr;</button>
+            <button class="calc-btn calc-btn--fn" data-action="percent">%</button>
+            <button class="calc-btn calc-btn--op" data-action="divide">&divide;</button>
+
+            <button class="calc-btn" data-action="digit" data-value="7">7</button>
+            <button class="calc-btn" data-action="digit" data-value="8">8</button>
+            <button class="calc-btn" data-action="digit" data-value="9">9</button>
+            <button class="calc-btn calc-btn--op" data-action="multiply">&times;</button>
+
+            <button class="calc-btn" data-action="digit" data-value="4">4</button>
+            <button class="calc-btn" data-action="digit" data-value="5">5</button>
+            <button class="calc-btn" data-action="digit" data-value="6">6</button>
+            <button class="calc-btn calc-btn--op" data-action="subtract">&minus;</button>
+
+            <button class="calc-btn" data-action="digit" data-value="1">1</button>
+            <button class="calc-btn" data-action="digit" data-value="2">2</button>
+            <button class="calc-btn" data-action="digit" data-value="3">3</button>
+            <button class="calc-btn calc-btn--op" data-action="add">+</button>
+
+            <button class="calc-btn calc-btn--wide" data-action="digit" data-value="0">0</button>
+            <button class="calc-btn" data-action="decimal">.</button>
+            <button class="calc-btn calc-btn--op calc-btn--equals" data-action="equals">=</button>
+          </div>
+        </div>
       </Window>
     </div>
   </Desktop>
@@ -257,7 +319,8 @@ harmed in its creation.
 
 
 <script>
-  // Import window manager and keyboard scripts
   import '../scripts/window-manager.js';
   import '../scripts/keyboard.js';
+  import '../scripts/terminal.js';
+  import '../scripts/calculator.js';
 </script>

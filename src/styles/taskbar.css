@@ -1,0 +1,177 @@
+/* ============================================
+   TASKBAR STYLES
+   Win95-style bottom taskbar
+   ============================================ */
+
+.taskbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 36px;
+  z-index: var(--z-menu-bar);
+  display: flex;
+  align-items: center;
+  padding: 2px 4px;
+  gap: 2px;
+
+  background: var(--color-window-bg);
+  background: linear-gradient(180deg, #dfdfdf 0%, #c8c8c8 100%);
+  border-top: 2px solid;
+  border-top-color: var(--color-border-light);
+  box-shadow: inset 0 1px 0 #fff;
+
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* ============================================
+   START BUTTON
+   ============================================ */
+
+.taskbar-start {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  height: 28px;
+  background: var(--color-window-bg);
+  border: 2px solid;
+  border-color: var(--color-border-light) var(--color-border-darker) var(--color-border-darker) var(--color-border-light);
+  box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.6);
+  font-family: var(--font-system);
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.taskbar-start:hover {
+  background: #e0e0e0;
+}
+
+.taskbar-start:active,
+.taskbar-start--active {
+  border-color: var(--color-border-darker) var(--color-border-light) var(--color-border-light) var(--color-border-darker);
+  box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.2);
+  padding: 3px 7px 1px 9px;
+}
+
+.start-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+/* ============================================
+   DIVIDER
+   ============================================ */
+
+.taskbar-divider {
+  width: 2px;
+  height: 24px;
+  flex-shrink: 0;
+  border-left: 1px solid var(--color-border-darker);
+  border-right: 1px solid var(--color-border-light);
+}
+
+/* ============================================
+   OPEN WINDOWS AREA
+   ============================================ */
+
+.taskbar-windows {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex: 1;
+  overflow: hidden;
+  min-width: 0;
+}
+
+.taskbar-window-btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  height: 26px;
+  min-width: 0;
+  max-width: 180px;
+  flex: 1 1 140px;
+  background: var(--color-window-bg);
+  border: 2px solid;
+  border-color: var(--color-border-light) var(--color-border-darker) var(--color-border-darker) var(--color-border-light);
+  font-family: var(--font-system);
+  font-size: var(--font-size-xs);
+  text-align: left;
+  cursor: pointer;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.taskbar-window-btn:hover {
+  background: #e0e0e0;
+}
+
+/* Active window button appears pressed */
+.taskbar-window-btn--active {
+  border-color: var(--color-border-darker) var(--color-border-light) var(--color-border-light) var(--color-border-darker);
+  box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.15);
+  background: #d0d0d0;
+  font-weight: 700;
+}
+
+/* Minimized window has normal (raised) button */
+.taskbar-window-btn--minimized {
+  font-style: italic;
+  opacity: 0.8;
+}
+
+/* ============================================
+   SYSTEM TRAY / CLOCK
+   ============================================ */
+
+.taskbar-tray {
+  display: flex;
+  align-items: center;
+  padding: 2px 8px;
+  height: 26px;
+  flex-shrink: 0;
+  border: 1px solid;
+  border-color: var(--color-border-darker) var(--color-border-light) var(--color-border-light) var(--color-border-darker);
+  background: var(--color-window-bg);
+}
+
+.taskbar-clock {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-xs);
+  color: var(--color-text);
+  white-space: nowrap;
+  letter-spacing: -0.5px;
+}
+
+/* ============================================
+   MOBILE: Taskbar becomes icon dock
+   ============================================ */
+
+@media (max-width: 767px) {
+  .taskbar-start,
+  .taskbar-windows,
+  .taskbar-divider {
+    display: none;
+  }
+
+  .taskbar {
+    height: auto;
+    padding: var(--space-sm) var(--space-md);
+    justify-content: center;
+    background: rgba(244, 241, 235, 0.95);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid var(--color-border-dark);
+    box-shadow: none;
+  }
+
+  .taskbar-tray {
+    display: none;
+  }
+}

@@ -1,0 +1,53 @@
+---
+// StartMenu - Classic Win95-style start menu
+---
+
+<div class="start-menu" id="start-menu" aria-hidden="true" role="menu" aria-label="Start menu">
+  <div class="start-menu-sidebar">
+    <span class="start-menu-sidebar-text">RyanOS</span>
+  </div>
+  <div class="start-menu-items">
+    <button class="start-menu-item" data-open-window="about" role="menuitem">
+      <img src="/images/icons/about.svg" class="start-menu-icon" alt="" />
+      <span>About</span>
+    </button>
+    <button class="start-menu-item" data-open-window="projects" role="menuitem">
+      <img src="/images/icons/projects.svg" class="start-menu-icon" alt="" />
+      <span>Projects</span>
+    </button>
+    <button class="start-menu-item" data-open-window="writing" role="menuitem">
+      <img src="/images/icons/writing.svg" class="start-menu-icon" alt="" />
+      <span>Writing</span>
+    </button>
+    <button class="start-menu-item" data-open-window="contact" role="menuitem">
+      <img src="/images/icons/contact.svg" class="start-menu-icon" alt="" />
+      <span>Contact</span>
+    </button>
+
+    <div class="start-menu-separator"></div>
+
+    <button class="start-menu-item" data-open-window="notes" role="menuitem">
+      <img src="/images/icons/notes.svg" class="start-menu-icon" alt="" />
+      <span>Notes.txt</span>
+    </button>
+    <button class="start-menu-item" data-open-window="terminal" role="menuitem">
+      <img src="/images/icons/terminal.svg" class="start-menu-icon" alt="" />
+      <span>Terminal</span>
+    </button>
+    <button class="start-menu-item" data-open-window="calc" role="menuitem">
+      <img src="/images/icons/calculator.svg" class="start-menu-icon" alt="" />
+      <span>Calculator</span>
+    </button>
+
+    <div class="start-menu-separator"></div>
+
+    <button class="start-menu-item start-menu-item--shutdown" id="shutdown-btn" role="menuitem">
+      <span class="start-menu-icon-placeholder">&#9211;</span>
+      <span>Shut Down...</span>
+    </button>
+  </div>
+</div>
+
+<script>
+  import '../scripts/start-menu.js';
+</script>

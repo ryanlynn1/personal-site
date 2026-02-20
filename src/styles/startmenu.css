@@ -1,0 +1,177 @@
+/* ============================================
+   START MENU STYLES
+   Classic Win95-style start menu
+   ============================================ */
+
+.start-menu {
+  position: fixed;
+  bottom: 36px;
+  left: 0;
+  width: 220px;
+  background: var(--color-window-bg);
+  border: 2px solid;
+  border-color: var(--color-border-light) var(--color-border-darker)
+    var(--color-border-darker) var(--color-border-light);
+  box-shadow: 4px -4px 0px rgba(0, 0, 0, 0.15);
+  z-index: calc(var(--z-menu-bar) + 10);
+  display: none;
+  flex-direction: row;
+}
+
+.start-menu[aria-hidden="false"] {
+  display: flex;
+}
+
+/* ============================================
+   SIDEBAR (vertical "RyanOS" text)
+   ============================================ */
+
+.start-menu-sidebar {
+  width: 28px;
+  background: linear-gradient(
+    0deg,
+    var(--color-title-bar-active) 0%,
+    var(--color-title-bar-gradient-end) 100%
+  );
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: var(--space-sm);
+  flex-shrink: 0;
+}
+
+.start-menu-sidebar-text {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  color: white;
+  font-weight: 700;
+  font-size: var(--font-size-lg);
+  font-family: var(--font-system);
+  letter-spacing: 2px;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.3);
+}
+
+/* ============================================
+   MENU ITEMS
+   ============================================ */
+
+.start-menu-items {
+  flex: 1;
+  padding: var(--space-xs) 0;
+}
+
+.start-menu-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  width: 100%;
+  padding: 6px var(--space-md);
+  background: none;
+  border: none;
+  font-family: var(--font-system);
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+  cursor: pointer;
+  text-decoration: none;
+  text-align: left;
+}
+
+.start-menu-item:hover,
+.start-menu-item:focus-visible {
+  background: var(--color-selection);
+  color: var(--color-selection-text);
+}
+
+.start-menu-item:focus-visible {
+  outline: none;
+}
+
+.start-menu-item:hover .start-menu-icon,
+.start-menu-item:focus-visible .start-menu-icon {
+  filter: brightness(0) invert(1);
+}
+
+.start-menu-icon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.start-menu-icon-placeholder {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+/* ============================================
+   SEPARATOR
+   ============================================ */
+
+.start-menu-separator {
+  height: 1px;
+  background: var(--color-border-dark);
+  margin: var(--space-xs) var(--space-sm);
+  box-shadow: 0 1px 0 var(--color-border-light);
+}
+
+/* ============================================
+   SHUTDOWN ITEM
+   ============================================ */
+
+.start-menu-item--shutdown {
+  font-weight: 700;
+}
+
+/* ============================================
+   SHUTDOWN OVERLAY
+   ============================================ */
+
+.shutdown-overlay {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  z-index: var(--z-splash);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  animation: shutdown-fade-in 0.5s ease-out;
+}
+
+@keyframes shutdown-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.shutdown-box {
+  text-align: center;
+  padding: var(--space-lg);
+}
+
+.shutdown-title {
+  font-family: var(--font-system);
+  font-size: 24px;
+  color: #ff8800;
+  margin-bottom: var(--space-lg);
+  line-height: 1.4;
+}
+
+.shutdown-subtext {
+  font-family: var(--font-system);
+  font-size: var(--font-size-sm);
+  color: #666;
+}
+
+/* ============================================
+   MOBILE: Start menu hidden
+   ============================================ */
+
+@media (max-width: 767px) {
+  .start-menu {
+    display: none !important;
+  }
+}
