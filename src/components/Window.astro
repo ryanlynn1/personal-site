@@ -8,6 +8,7 @@ interface Props {
   defaultY?: number;
   toolbar?: 'menubar' | 'editor' | 'browser' | 'email' | 'notepad' | 'none';
   statusText?: string;
+  icon?: string;
 }
 
 const {
@@ -19,6 +20,7 @@ const {
   defaultY = 80,
   toolbar = 'none',
   statusText,
+  icon,
 } = Astro.props;
 ---
 
@@ -34,6 +36,7 @@ const {
   style={`width: ${width}px; height: ${height}px;`}
 >
   <div class="title-bar" data-draggable>
+    {icon && <img class="title-bar-icon" src={icon} alt="" />}
     <span class="title-bar-text" id={`title-${id}`}>{title}</span>
     <div class="title-bar-controls">
       <button

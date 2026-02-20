@@ -65,6 +65,18 @@
   color: var(--color-text-muted);
 }
 
+.title-bar-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  filter: brightness(0) invert(1);
+  pointer-events: none;
+}
+
+.window:not(.window--active) .title-bar-icon {
+  filter: brightness(0) invert(0.5);
+}
+
 .title-bar-text {
   color: var(--color-text-title);
   font-size: var(--font-size-sm);

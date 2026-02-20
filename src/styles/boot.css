@@ -268,6 +268,71 @@
 }
 
 /* ============================================
+   STAGE 4: HELLO MAC TRIBUTE
+   ============================================ */
+
+/* Transition boot background to warm cream */
+.boot--hello-active {
+  background: #f5f5f0;
+  transition: background 0.6s ease-out;
+}
+
+/* Hide scanlines during hello stage */
+.boot--hello-active::before {
+  opacity: 0;
+  transition: opacity 0.4s ease-out;
+}
+
+/* Hide CRT glow during hello stage */
+.boot--hello-active::after {
+  opacity: 0;
+  transition: opacity 0.4s ease-out;
+}
+
+/* Hide skip button styling on warm background */
+.boot--hello-active .boot-skip {
+  color: rgba(0, 0, 0, 0.3);
+  border-color: rgba(0, 0, 0, 0.15);
+}
+
+.boot--hello-active .boot-hint {
+  color: rgba(0, 0, 0, 0.25);
+}
+
+#boot-hello {
+  align-items: center;
+  justify-content: center;
+}
+
+.hello-text {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-style: italic;
+  font-size: clamp(72px, 15vw, 160px);
+  color: #222222;
+  opacity: 0;
+  animation: hello-fade-in 0.6s ease-out forwards;
+  user-select: none;
+}
+
+@keyframes hello-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hello-text {
+    animation: none;
+    opacity: 1;
+  }
+}
+
+/* ============================================
    DESKTOP HIDDEN STATE
    ============================================ */
 

@@ -73,6 +73,9 @@ class BootSequence {
       await this.runDialup();
       if (this.isSkipping) return;
 
+      await this.runHello();
+      if (this.isSkipping) return;
+
       this.dismiss();
     } catch {
       // If anything fails, just dismiss
@@ -223,6 +226,26 @@ class BootSequence {
     }
 
     await this.wait(500);
+    stage.classList.remove('boot-stage--active');
+  }
+
+  async runHello() {
+    const stage = document.getElementById('boot-hello');
+    if (!stage) return;
+
+    // Transition boot background from dark to warm cream
+    this.element.classList.add('boot--hello-active');
+
+    // Brief pause for background transition to start
+    await this.wait(400);
+    if (this.isSkipping) return;
+
+    stage.classList.add('boot-stage--active');
+
+    // Hold the hello screen
+    await this.wait(1500);
+    if (this.isSkipping) return;
+
     stage.classList.remove('boot-stage--active');
   }
 

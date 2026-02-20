@@ -53,7 +53,7 @@ import StartMenu from '../components/StartMenu.astro';
     <!-- Windows Container -->
     <div class="windows-container">
       <!-- About Window -->
-      <Window id="about" title="About - Ryan Lynn" toolbar="menubar" statusText="Ready" width={650} height={520} defaultX={300} defaultY={60}>
+      <Window id="about" title="About - Ryan Lynn" toolbar="menubar" statusText="Ready" icon="/images/icons/about.svg" width={650} height={520} defaultX={180} defaultY={40}>
         <div class="about-header">
           <h1 class="about-name">Ryan Lynn</h1>
           <p class="about-tagline">Builder & Entrepreneur | AI at Michigan Ross</p>
@@ -88,7 +88,7 @@ import StartMenu from '../components/StartMenu.astro';
       </Window>
 
       <!-- Projects Window -->
-      <Window id="projects" title="Projects" toolbar="browser" statusText="3 items" width={650} height={450} defaultX={300} defaultY={80}>
+      <Window id="projects" title="Projects" toolbar="browser" statusText="3 items" icon="/images/icons/projects.svg" width={650} height={450} defaultX={220} defaultY={60}>
         <div class="projects-list">
 
           <div class="project-item">
@@ -140,7 +140,7 @@ import StartMenu from '../components/StartMenu.astro';
       </Window>
 
       <!-- Writing Window -->
-      <Window id="writing" title="Writing" toolbar="editor" statusText="3 articles" width={650} height={400} defaultX={300} defaultY={80}>
+      <Window id="writing" title="Writing" toolbar="editor" statusText="3 articles" icon="/images/icons/writing.svg" width={650} height={400} defaultX={260} defaultY={80}>
         <div class="writing-list">
           <!-- PLACEHOLDER: Update with your actual posts -->
 
@@ -191,7 +191,7 @@ import StartMenu from '../components/StartMenu.astro';
       </Window>
 
       <!-- Contact Window -->
-      <Window id="contact" title="Inbox - Contact" toolbar="email" statusText="Connected" width={650} height={340} defaultX={300} defaultY={80}>
+      <Window id="contact" title="Inbox - Contact" toolbar="email" statusText="Connected" icon="/images/icons/contact.svg" width={650} height={340} defaultX={300} defaultY={100}>
         <div class="contact-list">
           <!-- PLACEHOLDER: Update with your actual links -->
 
@@ -234,7 +234,7 @@ import StartMenu from '../components/StartMenu.astro';
       </Window>
 
       <!-- Notes.txt Easter Egg Window -->
-      <Window id="notes" title="Notes.txt - Notepad" toolbar="notepad" statusText="Ln 1, Col 1" width={650} height={380} defaultX={300} defaultY={80}>
+      <Window id="notes" title="Notes.txt - Notepad" toolbar="notepad" statusText="Ln 1, Col 1" icon="/images/icons/notes.svg" width={650} height={380} defaultX={340} defaultY={120}>
         <pre class="notes-content">
 // Notes.txt
 // =========
@@ -266,7 +266,7 @@ a command prompt Easter egg.
       </Window>
 
       <!-- Terminal (Easter Egg) -->
-      <Window id="terminal" title="Command Prompt" toolbar="none" width={560} height={380} defaultX={200} defaultY={100}>
+      <Window id="terminal" title="Command Prompt" toolbar="none" icon="/images/icons/terminal.svg" width={560} height={380} defaultX={200} defaultY={50}>
         <div class="terminal">
           <div class="terminal-output" id="terminal-output">
             <pre>RyanOS Terminal v1.0
@@ -283,7 +283,7 @@ Type 'help' for available commands.
       </Window>
 
       <!-- Calculator (Easter Egg) -->
-      <Window id="calc" title="Calculator" toolbar="none" width={240} height={340} defaultX={500} defaultY={120}>
+      <Window id="calc" title="Calculator" toolbar="none" icon="/images/icons/calculator.svg" width={240} height={340} defaultX={500} defaultY={100}>
         <div class="calculator" id="calculator">
           <input type="text" class="calc-display" id="calc-display" readonly value="0" aria-label="Calculator display" />
           <div class="calc-buttons">

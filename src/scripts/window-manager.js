@@ -65,6 +65,17 @@ class WindowManager {
       });
     });
 
+    // Double-click title bar to maximize/restore
+    document.querySelectorAll('[data-draggable]').forEach((titleBar) => {
+      titleBar.addEventListener('dblclick', (e) => {
+        if (e.target.closest('.title-bar-controls')) return;
+        const windowEl = titleBar.closest('.window');
+        if (!windowEl || this.isMobile) return;
+        const id = windowEl.id.replace('window-', '');
+        this.maximizeWindow(id);
+      });
+    });
+
     // Setup drag handlers (desktop only)
     if (!this.isMobile) {
       this.setupDragging();

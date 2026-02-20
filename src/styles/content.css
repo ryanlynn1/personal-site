@@ -9,6 +9,8 @@
 
 .about-header {
   margin-bottom: var(--space-md);
+  padding-bottom: var(--space-md);
+  border-bottom: 1px solid var(--color-border-mid);
 }
 
 .about-name {
@@ -25,17 +27,17 @@
 }
 
 .about-bio {
-  margin-bottom: var(--space-md);
-  line-height: 1.6;
+  margin-bottom: var(--space-lg);
+  line-height: 1.7;
 }
 
 .about-section-title {
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-base);
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   color: var(--color-text-muted);
-  margin: var(--space-md) 0 var(--space-sm) 0;
+  margin: var(--space-lg) 0 var(--space-sm) 0;
   border-bottom: 1px solid var(--color-border-mid);
   padding-bottom: var(--space-xs);
 }
@@ -47,9 +49,10 @@
 }
 
 .about-now-list li {
-  padding: var(--space-xs) 0;
+  padding: var(--space-sm) 0;
   padding-left: var(--space-md);
   position: relative;
+  line-height: 1.5;
 }
 
 .about-now-list li::before {
@@ -67,35 +70,49 @@
 .projects-list {
   display: flex;
   flex-direction: column;
-  gap: var(--space-sm);
+  gap: var(--space-md);
 }
 
 .project-item {
   display: flex;
-  gap: var(--space-sm);
-  padding: var(--space-sm);
+  gap: var(--space-md);
+  padding: var(--space-md);
   border: 1px solid var(--color-border-mid);
   background: var(--color-bg);
+  border-radius: 2px;
+  transition: background 0.1s;
 }
 
 .project-item:hover {
   background: var(--color-bg-dark);
+  box-shadow:
+    inset 1px 1px 0 var(--color-border-light),
+    inset -1px -1px 0 var(--color-border-dark);
 }
 
 .project-icon {
-  width: 32px;
-  height: 32px;
+  width: 48px;
+  height: 48px;
   flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   background: var(--color-window-bg);
   border: 1px solid var(--color-border-mid);
+  border-radius: 4px;
+  padding: 4px;
 }
 
 .project-icon svg {
-  width: 20px;
-  height: 20px;
+  width: 32px;
+  height: 32px;
+}
+
+.project-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 2px;
 }
 
 .project-content {
@@ -104,22 +121,34 @@
 }
 
 .project-name {
-  font-weight: 600;
-  margin: 0 0 2px 0;
-  font-size: var(--font-size-base);
+  font-weight: 700;
+  margin: 0 0 4px 0;
+  font-size: var(--font-size-lg);
 }
 
 .project-description {
   font-size: var(--font-size-sm);
   color: var(--color-text-muted);
-  margin: 0 0 var(--space-xs) 0;
-  line-height: 1.4;
+  margin: 0 0 var(--space-sm) 0;
+  line-height: 1.5;
 }
 
 .project-links {
   display: flex;
   gap: var(--space-sm);
   font-size: var(--font-size-sm);
+}
+
+.project-links .classic-link {
+  padding: 1px 8px;
+  background: var(--color-window-bg);
+  border: 1px solid var(--color-border-mid);
+  text-decoration: none;
+  color: var(--color-link);
+}
+
+.project-links .classic-link:hover {
+  background: var(--color-bg-dark);
 }
 
 /* ============================================
@@ -136,8 +165,15 @@
   justify-content: space-between;
   align-items: baseline;
   gap: var(--space-md);
-  padding: var(--space-sm) 0;
+  padding: var(--space-md) var(--space-sm);
   border-bottom: 1px solid var(--color-border-mid);
+  margin: 0 calc(-1 * var(--space-sm));
+  border-radius: 2px;
+  transition: background 0.1s;
+}
+
+.writing-item:hover {
+  background: var(--color-bg);
 }
 
 .writing-item:last-child {
@@ -156,10 +192,13 @@
 }
 
 .writing-date {
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-xs);
   color: var(--color-text-muted);
   font-family: var(--font-mono);
   white-space: nowrap;
+  background: var(--color-bg);
+  padding: 1px 6px;
+  border: 1px solid var(--color-border-mid);
 }
 
 .writing-cta {
@@ -176,24 +215,33 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-sm);
-  margin-bottom: var(--space-lg);
+  margin-bottom: var(--space-md);
 }
 
 .contact-item {
   display: flex;
   align-items: center;
-  gap: var(--space-sm);
+  gap: var(--space-md);
+  padding: var(--space-sm);
+  border-radius: 2px;
+  transition: background 0.1s;
+}
+
+.contact-item:hover {
+  background: var(--color-bg);
 }
 
 .contact-icon {
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
   flex-shrink: 0;
-  color: var(--color-text-muted);
+  color: var(--color-text);
 }
 
 .contact-cta {
   margin-top: var(--space-md);
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--color-border-mid);
 }
 
 /* ============================================
@@ -206,6 +254,7 @@
   white-space: pre-wrap;
   line-height: 1.6;
   color: var(--color-text);
+  padding: var(--space-xs);
 }
 
 /* ============================================
@@ -213,9 +262,9 @@
    ============================================ */
 
 .external-icon {
-  width: 12px;
-  height: 12px;
-  opacity: 0.6;
+  width: 14px;
+  height: 14px;
+  opacity: 0.7;
 }
 
 /* ============================================
@@ -224,8 +273,8 @@
 
 .about-timeline {
   display: flex;
-  gap: var(--space-sm);
-  margin: var(--space-md) 0;
+  gap: var(--space-md);
+  margin: var(--space-lg) 0;
 }
 
 .timeline-photo {
@@ -235,9 +284,10 @@
 
 .timeline-photo img {
   width: 100%;
-  height: 80px;
+  height: 120px;
   object-fit: cover;
   border: 1px solid var(--color-border-mid);
+  border-radius: 2px;
 }
 
 .timeline-photo span {
@@ -245,14 +295,4 @@
   font-size: var(--font-size-xs);
   color: var(--color-text-muted);
   margin-top: var(--space-xs);
-}
-
-/* ============================================
-   PROJECT LOGO IMAGES
-   ============================================ */
-
-.project-icon img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
 }
