@@ -1,0 +1,92 @@
+/* ============================================
+   SPLASH SCREEN STYLES
+   Classic Mac "hello" intro
+   ============================================ */
+
+.splash {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: var(--z-splash);
+  background: #f5f5f0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+/* Fade out animation */
+.splash--fade-out {
+  opacity: 0;
+  transition: opacity 0.5s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .splash--fade-out {
+    transition: none;
+  }
+}
+
+/* Skip button */
+.splash-skip {
+  position: absolute;
+  top: var(--space-md);
+  right: var(--space-md);
+  background: transparent;
+  border: 1px solid var(--color-border-dark);
+  padding: var(--space-xs) var(--space-sm);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.splash-skip:hover {
+  opacity: 1;
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.splash-skip:focus-visible {
+  outline: 2px dotted var(--color-text);
+  outline-offset: 2px;
+}
+
+/* Mac illustration container */
+.splash-mac {
+  width: 280px;
+  max-width: 80vw;
+}
+
+/* Hello text animation */
+@media (prefers-reduced-motion: no-preference) {
+  .splash-mac {
+    animation: splash-float 3s ease-in-out infinite;
+  }
+
+  @keyframes splash-float {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-8px);
+    }
+  }
+}
+
+/* Hint text */
+.splash-hint {
+  position: absolute;
+  bottom: var(--space-lg);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  opacity: 0.6;
+}
+
+/* Desktop hidden state while splash is showing */
+.desktop--hidden {
+  visibility: hidden;
+}

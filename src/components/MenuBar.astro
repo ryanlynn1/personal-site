@@ -1,0 +1,50 @@
+---
+// MenuBar component - Mac-inspired top menu bar with clock
+---
+
+<header class="menu-bar">
+  <div class="menu-bar-left">
+    <div class="menu-bar-logo">
+      <!-- Simple retro computer icon -->
+      <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+        <rect x="2" y="2" width="12" height="9" rx="1" fill="none" stroke="currentColor" stroke-width="1.5"/>
+        <rect x="4" y="4" width="8" height="5" fill="currentColor" opacity="0.3"/>
+        <rect x="6" y="12" width="4" height="2" fill="currentColor"/>
+        <rect x="4" y="14" width="8" height="1" fill="currentColor"/>
+      </svg>
+      <span>Ryan Lynn</span>
+    </div>
+  </div>
+  <div class="menu-bar-right">
+    <time class="menu-bar-clock" id="menu-clock" aria-live="polite" aria-label="Current time">
+      --:--
+    </time>
+  </div>
+</header>
+
+<script>
+  function updateClock() {
+    const clock = document.getElementById('menu-clock');
+    if (!clock) return;
+
+    const now = new Date();
+    const hours = now.getHours();
+    const minutes = now.getMinutes().toString().padStart(2, '0');
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+    const displayHours = hours % 12 || 12;
+
+    clock.textContent = `${displayHours}:${minutes} ${ampm}`;
+  }
+
+  // Update immediately and then every minute
+  updateClock();
+  setInterval(updateClock, 60000);
+
+  // Also update when the page becomes visible again
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) {
+      updateClock();
+    }
+  });
+</script>
+

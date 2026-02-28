@@ -1,0 +1,64 @@
+/* ============================================
+   MENU BAR STYLES (Mac-inspired)
+   ============================================ */
+
+.menu-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 24px;
+  background: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    #e8e8e8 50%,
+    #d0d0d0 100%
+  );
+  border-bottom: 1px solid var(--color-border-dark);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--space-sm);
+  z-index: var(--z-menu-bar);
+  user-select: none;
+}
+
+.menu-bar-left {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.menu-bar-logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.menu-bar-logo svg {
+  width: 14px;
+  height: 14px;
+}
+
+.menu-bar-right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.menu-bar-clock {
+  font-size: var(--font-size-sm);
+  font-family: var(--font-mono);
+  color: var(--color-text);
+  letter-spacing: -0.5px;
+}
+
+/* Hide menu bar on mobile - dock is at bottom */
+@media (max-width: 767px) {
+  .menu-bar {
+    display: none;
+  }
+}
