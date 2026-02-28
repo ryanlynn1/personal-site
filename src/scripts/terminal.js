@@ -19,7 +19,7 @@ class Terminal {
       date: () => new Date().toLocaleDateString(),
       time: () => new Date().toLocaleTimeString(),
       echo: (args) => args.join(' '),
-      contact: () => 'Email: hello@ryanlynn.ai\nLinkedIn: linkedin.com/in/ryan-lynn-08b089106\nX: @ryan_lynn_\nGitHub: github.com/ryanlynn1',
+      contact: () => 'Email: ryanlynn@umich.edu\nLinkedIn: linkedin.com/in/ryan-lynn-08b089106\nX: @ryan_lynn_\nGitHub: github.com/ryanlynn1',
       cd: () => 'Nice try. There is nowhere else to go.',
       sudo: () => 'Permission denied. This is not your computer.',
       rm: () => "Let's not delete anything today.",
