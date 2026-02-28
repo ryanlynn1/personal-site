@@ -45,7 +45,7 @@ import StartMenu from '../components/StartMenu.astro';
         <img src="/images/icons/terminal.svg" alt="" />
       </DesktopIcon>
 
-      <DesktopIcon id="calc" label="Calculator" x={32} y={680}>
+      <DesktopIcon id="calc" label="Calculator" x={140} y={572}>
         <img src="/images/icons/calculator.svg" alt="" />
       </DesktopIcon>
     </nav>
@@ -56,11 +56,11 @@ import StartMenu from '../components/StartMenu.astro';
       <Window id="about" title="About - Ryan Lynn" toolbar="menubar" statusText="Ready" icon="/images/icons/about.svg" width={650} height={520} defaultX={180} defaultY={40}>
         <div class="about-header">
           <h1 class="about-name">Ryan Lynn</h1>
-          <p class="about-tagline">Builder & Entrepreneur | AI at Michigan Ross</p>
+          <p class="about-tagline">Founder, OuterLayer | AI at Michigan Ross</p>
         </div>
 
         <p class="about-bio">
-          I've been starting businesses since "Ryan's Garage Sale" as a kid. After earning Top Performer of the Year at SS&C Intralinks, I left to build AI companies. Currently pursuing my MBA with a concentration in Artificial Intelligence at the University of Michigan Ross School of Business (graduating May 2026).
+          I've been building things since running garage sales as a kid and getting in trouble for reselling Wacky Packages to classmates in fourth grade. After seven years in corporate America — management consulting at Grant Thornton and enterprise SaaS sales at SS&C Intralinks, where I earned Top Performer of the Year — I left to build AI companies. Currently finishing my MBA with a concentration in AI at Michigan Ross (graduating May 2026).
         </p>
 
         <div class="about-timeline">
@@ -73,16 +73,16 @@ import StartMenu from '../components/StartMenu.astro';
             <span>SS&C Intralinks</span>
           </div>
           <div class="timeline-photo">
-            <img src="/building.jpg" alt="Building OuterEdge and StartingIt" />
+            <img src="/building.jpg" alt="Building OuterLayer" />
             <span>Building</span>
           </div>
         </div>
 
         <h2 class="about-section-title">Now</h2>
         <ul class="about-now-list">
-          <li>Building OuterEdge and StartingIt</li>
+          <li>Building OuterLayer — AI agents for enterprise sales teams</li>
           <li>Zell Entrepreneur at Ross School of Business</li>
-          <li>VP of Education, Zell Lurie Commercialization Fund — teaching VC & entrepreneurship</li>
+          <li>VP of Education, Zell Lurie Commercialization Fund</li>
           <li>Based in Ann Arbor, Michigan</li>
         </ul>
       </Window>
@@ -93,12 +93,12 @@ import StartMenu from '../components/StartMenu.astro';
 
           <div class="project-item">
             <div class="project-icon">
-              <img src="/startingit-agent-logo.png" alt="The Bullpen logo" />
+              <img src="/outeredge-logo-white-circle-green-dot-black-fill.png" alt="OuterLayer logo" />
             </div>
             <div class="project-content">
-              <h3 class="project-name">The Bullpen</h3>
+              <h3 class="project-name">OuterLayer</h3>
               <p class="project-description">
-                AI platform for middle-market deal teams. Secure, compliant AI tailored to private files and workflows—internal research, external research, and team collaboration.
+                Building and deploying production-ready AI agents for mid-market and enterprise sales teams. Purpose-built agents, context engineering, and end-to-end deployment — turning AI potential into revenue impact.
               </p>
               <div class="project-links">
                 <a href="https://thebullpen.ai/" class="classic-link classic-link--external" target="_blank" rel="noopener noreferrer">Site</a>
@@ -108,15 +108,15 @@ import StartMenu from '../components/StartMenu.astro';
 
           <div class="project-item">
             <div class="project-icon">
-              <img src="/outeredge-logo-white-circle-green-dot-black-fill.png" alt="OuterEdge logo" />
+              <img src="/startingit-agent-logo.png" alt="The Bullpen logo" />
             </div>
             <div class="project-content">
-              <h3 class="project-name">OuterEdge</h3>
+              <h3 class="project-name">The Bullpen</h3>
               <p class="project-description">
-                AI transformation consultancy helping enterprises and startups build, grow, and transform with AI at startup speed. Product, process, and people transformation—shipped in weeks, not months.
+                AI platform for middle-market deal teams. Secure, compliant AI tailored to private files and workflows — internal research, external research, and team collaboration.
               </p>
               <div class="project-links">
-                <a href="https://www.outeredge.ai/" class="classic-link classic-link--external" target="_blank" rel="noopener noreferrer">Site</a>
+                <a href="https://thebullpen.ai/" class="classic-link classic-link--external" target="_blank" rel="noopener noreferrer">Site</a>
               </div>
             </div>
           </div>
@@ -128,7 +128,7 @@ import StartMenu from '../components/StartMenu.astro';
             <div class="project-content">
               <h3 class="project-name">StartingIt</h3>
               <p class="project-description">
-                Your AI co-founder. From idea to revenue—StartIt generates personalized startup ideas, BuildIt helps you ship an MVP in a weekend, and GrowIt creates custom growth strategies.
+                Your AI co-founder. From idea to revenue — StartIt generates personalized startup ideas, BuildIt helps you ship an MVP in a weekend, and GrowIt creates custom growth strategies.
               </p>
               <div class="project-links">
                 <a href="https://www.startingit.ai/" class="classic-link classic-link--external" target="_blank" rel="noopener noreferrer">Site</a>
@@ -140,53 +140,12 @@ import StartMenu from '../components/StartMenu.astro';
       </Window>
 
       <!-- Writing Window -->
-      <Window id="writing" title="Writing" toolbar="editor" statusText="3 articles" icon="/images/icons/writing.svg" width={650} height={400} defaultX={260} defaultY={80}>
+      <Window id="writing" title="Writing" toolbar="editor" statusText="Coming soon" icon="/images/icons/writing.svg" width={650} height={400} defaultX={260} defaultY={80}>
         <div class="writing-list">
-          <!-- PLACEHOLDER: Update with your actual posts -->
-
-          <div class="writing-item">
-            <div class="writing-title">
-              <a href="#" class="classic-link classic-link--external">
-                [Article Title Here]
-                <svg class="external-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/>
-                </svg>
-              </a>
-            </div>
-            <span class="writing-date">2024-12</span>
+          <div class="writing-empty">
+            <p>Articles coming soon.</p>
+            <p class="writing-empty-sub">Thoughts on AI agents, enterprise sales, and building at the intersection of both.</p>
           </div>
-
-          <div class="writing-item">
-            <div class="writing-title">
-              <a href="#" class="classic-link classic-link--external">
-                [Another Article Title]
-                <svg class="external-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/>
-                </svg>
-              </a>
-            </div>
-            <span class="writing-date">2024-10</span>
-          </div>
-
-          <div class="writing-item">
-            <div class="writing-title">
-              <a href="#" class="classic-link classic-link--external">
-                [Third Article Title]
-                <svg class="external-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/>
-                </svg>
-              </a>
-            </div>
-            <span class="writing-date">2024-08</span>
-          </div>
-
-        </div>
-
-        <div class="writing-cta">
-          <!-- PLACEHOLDER: Update with your actual Substack URL -->
-          <Button href="https://substack.com/@yourusername" external>
-            Read more on Substack
-          </Button>
         </div>
       </Window>
 
@@ -208,21 +167,21 @@ import StartMenu from '../components/StartMenu.astro';
               <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/>
               <circle cx="4" cy="4" r="2"/>
             </svg>
-            <a href="https://linkedin.com/in/yourusername" class="classic-link classic-link--external" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a href="https://www.linkedin.com/in/ryan-lynn-08b089106/" class="classic-link classic-link--external" target="_blank" rel="noopener noreferrer">LinkedIn</a>
           </div>
 
           <div class="contact-item">
             <svg class="contact-icon" viewBox="0 0 24 24" fill="currentColor">
               <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
             </svg>
-            <a href="https://x.com/yourusername" class="classic-link classic-link--external" target="_blank" rel="noopener noreferrer">@yourusername</a>
+            <a href="https://x.com/ryan_lynn_" class="classic-link classic-link--external" target="_blank" rel="noopener noreferrer">@ryan_lynn_</a>
           </div>
 
           <div class="contact-item">
             <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/>
             </svg>
-            <a href="https://github.com/yourusername" class="classic-link classic-link--external" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href="https://github.com/ryanlynn1" class="classic-link classic-link--external" target="_blank" rel="noopener noreferrer">GitHub</a>
           </div>
         </div>
 
@@ -239,20 +198,39 @@ import StartMenu from '../components/StartMenu.astro';
 // Notes.txt
 // =========
 
-Thanks for exploring!
+Thanks for poking around RyanOS.
 
-If you found this file, you're probably
-someone who likes to poke around and
-see how things work. I appreciate that.
+A few things about me that didn't fit
+in the other windows:
+
+- Grew up in an entrepreneurial household.
+  Dad was a tech entrepreneur during the
+  early internet days. Mom ran a home goods
+  store on Main Street. Starting things
+  was just normal in our house.
+
+- Was the kid running garage sales and
+  getting in trouble for reselling Wacky
+  Packages to classmates in 4th grade.
+
+- Spent 7 years in corporate America
+  building the toolkit I knew I'd need.
+  Grant Thornton -> SS&C Intralinks ->
+  Michigan Ross MBA.
+
+- The AI revolution was the moment I'd
+  been waiting for. Couldn't not make
+  the leap.
 
 Some things I believe:
 - Ship early, iterate often
-- The best code is no code
-- Good design is invisible
+- Enterprise doesn't have to mean slow
+- The best products solve problems people
+  didn't know they could solve
 - Always be building
 
 Want to chat? Open the Contact window
-or just email me directly.
+or email hello@ryanlynn.ai
 
 - Ryan
 

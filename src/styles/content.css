@@ -207,6 +207,21 @@
   border-top: 1px solid var(--color-border-mid);
 }
 
+.writing-empty {
+  text-align: center;
+  padding: var(--space-lg) var(--space-md);
+}
+
+.writing-empty p {
+  margin: 0 0 var(--space-sm) 0;
+  font-size: var(--font-size-base);
+}
+
+.writing-empty-sub {
+  font-size: var(--font-size-sm) !important;
+  color: var(--color-text-muted);
+}
+
 /* ============================================
    CONTACT WINDOW
    ============================================ */

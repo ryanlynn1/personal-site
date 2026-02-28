@@ -15,11 +15,11 @@ class Terminal {
       dir: () => this.cmdLs(),
       clear: () => this.cmdClear(),
       cls: () => this.cmdClear(),
-      whoami: () => 'Ryan Lynn - Builder & Entrepreneur',
+      whoami: () => 'Ryan Lynn - Founder, OuterLayer',
       date: () => new Date().toLocaleDateString(),
       time: () => new Date().toLocaleTimeString(),
       echo: (args) => args.join(' '),
-      contact: () => 'Email: hello@ryanlynn.ai\nLinkedIn: linkedin.com/in/ryanlynn\nX: @ryanlynn',
+      contact: () => 'Email: hello@ryanlynn.ai\nLinkedIn: linkedin.com/in/ryan-lynn-08b089106\nX: @ryan_lynn_\nGitHub: github.com/ryanlynn1',
       cd: () => 'Nice try. There is nowhere else to go.',
       sudo: () => 'Permission denied. This is not your computer.',
       rm: () => "Let's not delete anything today.",
@@ -149,11 +149,14 @@ class Terminal {
   cmdAbout() {
     return [
       'Ryan Lynn',
-      'Builder & Entrepreneur',
+      'Founder, OuterLayer',
       'AI @ Michigan Ross (May 2026)',
       '',
-      'Building OuterEdge (AI consulting)',
-      'and StartingIt (AI co-founder).',
+      'Building production-ready AI agents',
+      'for enterprise sales teams.',
+      '',
+      '7 years corporate America ->',
+      'AI entrepreneur.',
     ].join('\n');
   }
 
@@ -188,7 +191,7 @@ class Terminal {
       '  Theme:   Warm Landscape',
       '  CPU:     Creative Cortex',
       '  Memory:  640K (should be enough)',
-      '  Uptime:  Since 2024',
+      '  Uptime:  Since garage sales in 4th grade',
     ].join('\n');
   }
 
