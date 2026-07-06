@@ -9,7 +9,7 @@ export const site = {
   // Hero (home page)
   heroTitle: 'Building production AI agents.',
   heroIntro:
-    "I'm Ryan Lynn, founder of IntelligentNoise — the AI platform for revenue teams. Strategic perspectives on building production AI agents, real-world implementation, and what's next.",
+    "I'm Ryan Lynn, founder of IntelligentNoise — the AI platform for revenue teams. Sharing some perspectives on building production AI agents, real-world implementations, and my thoughts on what's next.",
 
   // SEO / meta
   description:
