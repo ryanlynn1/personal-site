@@ -1,46 +1,83 @@
 ---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { site } from '../data/site';
+
 interface Props {
   title?: string;
   description?: string;
+  ogImage?: string;
 }
 
-const {
-  title = 'Ryan Lynn | ryanlynn.ai',
-  description = 'Personal website of Ryan Lynn - Builder, Creator, Technologist'
-} = Astro.props;
+const { title, description = site.description, ogImage = site.ogImage } = Astro.props;
 
-// Import all CSS globally
-import '../styles/global.css';
-import '../styles/texture.css';
-import '../styles/desktop.css';
-import '../styles/taskbar.css';
-import '../styles/window.css';
-import '../styles/boot.css';
-import '../styles/buttons.css';
-import '../styles/content.css';
-import '../styles/startmenu.css';
-import '../styles/terminal.css';
-import '../styles/calculator.css';
+const pageTitle = title ? `${title} · ${site.name}` : `${site.name} — ${site.tagline}`;
+const canonical = new URL(Astro.url.pathname, site.url).href;
+const ogImageUrl = new URL(ogImage, site.url).href;
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/png" href={site.favicon} />
+    <link rel="apple-touch-icon" href={site.favicon} />
+    <title>{pageTitle}</title>
     <meta name="description" content={description} />
-    <title>{title}</title>
+    <link rel="canonical" href={canonical} />
+    <meta name="generator" content={Astro.generator} />
 
-    <!-- Open Graph -->
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:url" content="https://ryanlynn.ai" />
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="theme-color" content="#fbfbfa" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
+
+    <script is:inline>
+      (function () {
+        try {
+          var t = localStorage.getItem('theme');
+          if (t === 'light' || t === 'dark') {
+            document.documentElement.setAttribute('data-theme', t);
+          }
+        } catch (e) {}
+      })();
+    </script>
   </head>
   <body>
-    <slot />
+    <a class="skip-link" href="#main">Skip to content</a>
+    <Header />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+    <style>
+      main {
+        padding-block: clamp(48px, 8vw, 96px) clamp(64px, 10vw, 120px);
+      }
+      .skip-link {
+        position: absolute;
+        left: -9999px;
+        top: 0;
+        padding: 10px 16px;
+        background: var(--accent);
+        color: #fff;
+        border-radius: 0 0 8px 0;
+        z-index: 100;
+      }
+      .skip-link:focus {
+        left: 0;
+      }
+    </style>
   </body>
 </html>

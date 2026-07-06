@@ -1,0 +1,53 @@
+---
+import { site, nav } from '../data/site';
+const year = 2026;
+---
+
+<footer class="site-footer">
+  <div class="container">
+    <hr class="divider" />
+    <div class="footer-inner">
+      <nav class="footer-nav" aria-label="Footer">
+        {nav.map((item) => <a href={item.href}>{item.label}</a>)}
+      </nav>
+      <p class="footer-copy">© {year} {site.copyrightName}. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    padding-bottom: 48px;
+  }
+  .footer-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding-top: 28px;
+  }
+  .footer-nav {
+    display: flex;
+    gap: 22px;
+  }
+  .footer-nav a {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    transition: color 0.15s ease;
+  }
+  .footer-nav a:hover {
+    color: var(--text-strong);
+  }
+  .footer-copy {
+    font-size: 0.85rem;
+    color: var(--text-faint);
+  }
+
+  @media (max-width: 560px) {
+    .footer-inner {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 16px;
+    }
+  }
+</style>

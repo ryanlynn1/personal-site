@@ -1,9 +1,30 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <!-- Simple retro computer favicon -->
-  <rect x="4" y="4" width="24" height="18" rx="2" fill="#E8E4DC" stroke="#808080" stroke-width="1.5"/>
-  <rect x="7" y="7" width="18" height="12" fill="#F8F8F0" stroke="#606060" stroke-width="1"/>
-  <rect x="10" y="22" width="12" height="2" fill="#D8D4CC"/>
-  <rect x="8" y="24" width="16" height="4" rx="1" fill="#E0DCD4" stroke="#A0A0A0" stroke-width="0.5"/>
-  <!-- "RL" initials on screen -->
-  <text x="16" y="16" text-anchor="middle" fill="#222" font-family="sans-serif" font-size="7" font-weight="bold">RL</text>
+<svg width="300" height="300" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="300" height="300" fill="#0A0A0A"/>
+<rect x="110" y="191" width="77" height="18" fill="white"/>
+<ellipse cx="95" cy="207.5" rx="47" ry="46.5" fill="white"/>
+<circle cx="197.5" cy="208.5" r="47.5" fill="white"/>
+<circle cx="198" cy="209" r="32" fill="url(#paint0_linear_1099_10584)"/>
+<circle cx="95" cy="209" r="32" fill="url(#paint1_linear_1099_10584)"/>
+<path d="M110 264L187 274.8V282H110V264Z" fill="white"/>
+<path d="M55.3934 151.144C52.9226 117.167 217.977 92.3024 238.922 120.106" stroke="white" stroke-width="6"/>
+<path d="M126.773 115.151C213.271 154.677 240.731 109.339 224.459 98.6307" stroke="white" stroke-width="6"/>
+<path d="M218.073 100.943C265.541 59.0888 188.568 134.253 130.353 100.173" stroke="white" stroke-width="6"/>
+<path d="M244.5 101.413V113.346L53.7275 120.484L37.6934 61.6426L244.5 101.413Z" fill="white" stroke="white"/>
+<path d="M66.4775 116.232L59.1592 159.209L50.8887 165.107L37.8359 63.584L66.4775 116.232Z" fill="white" stroke="white"/>
+<path d="M221.554 109.151L236.384 166.909L253.969 175.229L259.432 69.3232L221.554 109.151Z" fill="white" stroke="white"/>
+<path d="M104.5 90.416V106.936L256.184 118.463L261.441 61.6104L104.5 90.416Z" fill="white" stroke="white"/>
+<path d="M61.0557 81.7695L61.0215 81.9199L60.9092 82.0254L44.1436 97.7383L157.745 109.369L75.085 19.0449L61.0557 81.7695Z" fill="white" stroke="white"/>
+<path d="M105.983 83.8252L105.952 83.8721L105.91 83.9111L89.1396 99.6914L202.9 111.384L141.351 30.8584L105.983 83.8252Z" fill="white" stroke="white"/>
+<path d="M164.5 78.5781V101.727L234.241 112.378L206.3 35.916L164.5 78.5781Z" fill="white" stroke="white"/>
+<path d="M60.5 105.99V134.268L104.178 117.218L93.7725 104.51L60.5 105.99Z" fill="white" stroke="white"/>
+<defs>
+<linearGradient id="paint0_linear_1099_10584" x1="216.824" y1="185.471" x2="179.176" y2="230.647" gradientUnits="userSpaceOnUse">
+<stop stop-color="#A3CE87"/>
+<stop offset="1" stop-color="#1D665D"/>
+</linearGradient>
+<linearGradient id="paint1_linear_1099_10584" x1="74.2941" y1="228.765" x2="116.647" y2="187.353" gradientUnits="userSpaceOnUse">
+<stop stop-color="#1D665D"/>
+<stop offset="1" stop-color="#A3CE87"/>
+</linearGradient>
+</defs>
 </svg>

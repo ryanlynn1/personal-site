@@ -1,0 +1,74 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { formatDate, categoryLabel } from '../lib/categories';
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+  showCategory?: boolean;
+}
+
+const { post, showCategory = false } = Astro.props;
+const { data } = post;
+const iso = data.publishedAt.toISOString().slice(0, 10);
+---
+
+<article class="post-row">
+  <div class="post-meta">
+    {showCategory && <span class="post-cat">{categoryLabel(data.category)}</span>}
+    <time datetime={iso}>{formatDate(data.publishedAt)}</time>
+    <span class="dot" aria-hidden="true">·</span>
+    <span>{data.readTimeMinutes} min read</span>
+  </div>
+  <h3 class="post-title">
+    <a href={`/posts/${post.id}`}>{data.title}</a>
+  </h3>
+  <p class="post-excerpt">{data.excerpt}</p>
+</article>
+
+<style>
+  .post-row {
+    padding-block: 26px;
+    border-top: 1px solid var(--border);
+  }
+  .post-row:first-child {
+    border-top: 0;
+    padding-top: 0;
+  }
+  .post-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.76rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+  }
+  .post-cat {
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .dot {
+    color: var(--text-faint);
+  }
+  .post-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    margin-top: 12px;
+    color: var(--text-strong);
+  }
+  .post-title a {
+    transition: color 0.15s ease;
+  }
+  .post-title a:hover {
+    color: var(--accent);
+  }
+  .post-excerpt {
+    margin-top: 10px;
+    color: var(--text-muted);
+    font-size: 1rem;
+    line-height: 1.6;
+    max-width: 42rem;
+  }
+</style>

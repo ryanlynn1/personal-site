@@ -1,0 +1,255 @@
+---
+import { work } from '../data/work';
+---
+
+<aside class="work-rail" aria-label="Work history">
+  <div class="rail-card">
+    <div class="rail-head">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <rect x="2" y="7" width="20" height="14" rx="2"></rect>
+        <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+      </svg>
+      <span>Work</span>
+    </div>
+
+    <ul class="rail-list">
+      {
+        work.map((entry) => (
+          <li class="rail-entry">
+            <div class="entry-row">
+              <div
+                class:list={['entry-logo', { monogram: !!entry.monogram }]}
+                style={entry.monogram ? `background:${entry.monogramBg}` : undefined}
+              >
+                {entry.logo ? (
+                  <img src={entry.logo} alt="" />
+                ) : (
+                  <span class="monogram-text">{entry.monogram}</span>
+                )}
+              </div>
+              <div class="entry-body">
+                <div class="entry-top">
+                  <span class="entry-company">{entry.company}</span>
+                  <span class="entry-dates">{entry.start} — {entry.end}</span>
+                </div>
+                {entry.roles ? (
+                  <ul class="entry-roles">
+                    {entry.roles.map((r) => (
+                      <li class="role-item">
+                        <span class="role-title">{r.title}</span>
+                        <span class="role-dates">{r.start} — {r.end}</span>
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <span class="entry-role">{entry.role}</span>
+                )}
+                {entry.note && <span class="entry-note">{entry.note}</span>}
+              </div>
+            </div>
+
+            {entry.children && (
+              <ul class="rail-children">
+                {entry.children.map((child) => (
+                  <li class="rail-child">
+                    <div class="child-top">
+                      <span class="child-company">{child.company}</span>
+                      <span class="child-dates">
+                        {child.start} — {child.end}
+                      </span>
+                    </div>
+                    <span class="child-role">{child.role}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</aside>
+
+<style>
+  .work-rail {
+    position: sticky;
+    top: 24px;
+  }
+  .rail-card {
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    box-shadow: var(--card-shadow);
+  }
+  .rail-head {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin-bottom: 18px;
+    color: var(--text-strong);
+  }
+  .rail-head svg {
+    width: 17px;
+    height: 17px;
+    color: var(--text-muted);
+  }
+  .rail-head span {
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+
+  .rail-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .entry-row {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .entry-logo {
+    width: 38px;
+    height: 38px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .entry-logo.monogram {
+    border-color: transparent;
+  }
+  .entry-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 4px;
+  }
+  .monogram-text {
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: #fff;
+  }
+
+  .entry-body {
+    flex: 1;
+    min-width: 0;
+  }
+  .entry-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 10px;
+  }
+  .entry-company {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--text-strong);
+    line-height: 1.3;
+  }
+  .entry-dates {
+    font-size: 0.78rem;
+    color: var(--text-faint);
+    white-space: nowrap;
+    flex-shrink: 0;
+    font-variant-numeric: tabular-nums;
+  }
+  .entry-role {
+    display: block;
+    font-size: 0.83rem;
+    color: var(--text-muted);
+    margin-top: 1px;
+  }
+
+  /* Role progression within one company (e.g. SS&C Intralinks) */
+  .entry-roles {
+    list-style: none;
+    margin: 9px 0 0;
+    padding: 2px 0 2px 14px;
+    border-left: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+  }
+  .role-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 10px;
+  }
+  .role-title {
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--text);
+    line-height: 1.3;
+  }
+  .role-dates {
+    font-size: 0.73rem;
+    color: var(--text-faint);
+    white-space: nowrap;
+    flex-shrink: 0;
+    font-variant-numeric: tabular-nums;
+  }
+  .entry-note {
+    display: inline-block;
+    font-size: 0.76rem;
+    color: var(--accent);
+    margin-top: 4px;
+  }
+
+  /* Nested, de-emphasized child (e.g. ZLCF under the MBA) */
+  .rail-children {
+    list-style: none;
+    margin: 12px 0 0 19px;
+    padding: 2px 0 2px 16px;
+    border-left: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .child-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 10px;
+  }
+  .child-company {
+    font-size: 0.8rem;
+    font-style: italic;
+    font-weight: 500;
+    color: var(--text-faint);
+    line-height: 1.3;
+  }
+  .child-dates {
+    font-size: 0.72rem;
+    font-style: italic;
+    color: var(--text-faint);
+    white-space: nowrap;
+    flex-shrink: 0;
+    font-variant-numeric: tabular-nums;
+  }
+  .child-role {
+    display: block;
+    font-size: 0.76rem;
+    font-style: italic;
+    color: var(--text-faint);
+    margin-top: 1px;
+  }
+
+  @media (max-width: 860px) {
+    .work-rail {
+      position: static;
+      top: auto;
+    }
+  }
+</style>

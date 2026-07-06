@@ -1,300 +1,114 @@
 ---
+import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
-import BootSequence from '../components/BootSequence.astro';
-import Taskbar from '../components/Taskbar.astro';
-import Desktop from '../components/Desktop.astro';
-import DesktopIcon from '../components/DesktopIcon.astro';
-import Window from '../components/Window.astro';
-import Button from '../components/Button.astro';
-import StartMenu from '../components/StartMenu.astro';
+import WorkRail from '../components/WorkRail.astro';
+import PostRow from '../components/PostRow.astro';
+import { site } from '../data/site';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.publishedAt.getTime() - a.data.publishedAt.getTime()
+);
+const latest = posts[0];
+const rest = posts.slice(1, 6);
 ---
 
 <Layout>
-  <!-- Boot Sequence -->
-  <BootSequence />
+  <section class="container hero">
+    <h1 class="hero-title">{site.heroTitle}</h1>
+    <p class="hero-intro">{site.heroIntro}</p>
 
-  <!-- Taskbar + Start Menu -->
-  <Taskbar />
-  <StartMenu />
-
-  <!-- Desktop -->
-  <Desktop>
-    <!-- Desktop Icons -->
-    <nav class="desktop-icons" aria-label="Desktop icons">
-      <DesktopIcon id="about" label="About" x={32} y={32}>
-        <img src="/images/icons/about.svg" alt="" />
-      </DesktopIcon>
-
-      <DesktopIcon id="projects" label="Projects" x={32} y={140}>
-        <img src="/images/icons/projects.svg" alt="" />
-      </DesktopIcon>
-
-      <DesktopIcon id="writing" label="Writing" x={32} y={248}>
-        <img src="/images/icons/writing.svg" alt="" />
-      </DesktopIcon>
-
-      <DesktopIcon id="contact" label="Contact" x={32} y={356}>
-        <img src="/images/icons/contact.svg" alt="" />
-      </DesktopIcon>
-
-      <DesktopIcon id="notes" label="Notes.txt" x={32} y={464}>
-        <img src="/images/icons/notes.svg" alt="" />
-      </DesktopIcon>
-
-      <DesktopIcon id="terminal" label="Terminal" x={32} y={572}>
-        <img src="/images/icons/terminal.svg" alt="" />
-      </DesktopIcon>
-
-      <DesktopIcon id="calc" label="Calculator" x={140} y={572}>
-        <img src="/images/icons/calculator.svg" alt="" />
-      </DesktopIcon>
-    </nav>
-
-    <!-- Windows Container -->
-    <div class="windows-container">
-      <!-- About Window -->
-      <Window id="about" title="About - Ryan Lynn" toolbar="menubar" statusText="Ready" icon="/images/icons/about.svg" width={650} height={520} defaultX={180} defaultY={40}>
-        <div class="about-header">
-          <h1 class="about-name">Ryan Lynn</h1>
-          <p class="about-tagline">Founder, OuterLayer | AI at Michigan Ross</p>
+    {
+      latest && (
+        <div class="latest">
+          <span class="eyebrow">Latest</span>
+          <h2 class="latest-title">
+            <a href={`/posts/${latest.id}`}>{latest.data.title}</a>
+          </h2>
+          <p class="latest-excerpt">{latest.data.excerpt}</p>
+          <a class="accent-link" href={`/posts/${latest.id}`}>
+            Read the essay <span class="arrow" aria-hidden="true">→</span>
+          </a>
         </div>
+      )
+    }
+  </section>
 
-        <p class="about-bio">
-          I've been building things since running garage sales as a kid and getting in trouble for reselling Wacky Packages to classmates in fourth grade. After seven years in corporate America — management consulting at Grant Thornton and enterprise SaaS sales at SS&C Intralinks, where I earned Top Performer of the Year — I left to build AI companies. Currently finishing my MBA with a concentration in AI at Michigan Ross (graduating May 2026).
-        </p>
+  <div class="container"><hr class="divider" /></div>
 
-        <div class="about-timeline">
-          <div class="timeline-photo">
-            <img src="/founder.JPG" alt="Ryan's Garage Sale as a kid" />
-            <span>The early days</span>
-          </div>
-          <div class="timeline-photo">
-            <img src="/award.jpg" alt="Top Performer award at SS&C Intralinks" />
-            <span>SS&C Intralinks</span>
-          </div>
-          <div class="timeline-photo">
-            <img src="/building.jpg" alt="Building OuterLayer" />
-            <span>Building</span>
-          </div>
-        </div>
-
-        <h2 class="about-section-title">Now</h2>
-        <ul class="about-now-list">
-          <li>Building OuterLayer — AI agents for enterprise sales teams</li>
-          <li>Zell Entrepreneur at Ross School of Business</li>
-          <li>VP of Education, Zell Lurie Commercialization Fund</li>
-          <li>Based in Ann Arbor, Michigan</li>
-        </ul>
-      </Window>
-
-      <!-- Projects Window -->
-      <Window id="projects" title="Projects" toolbar="browser" statusText="3 items" icon="/images/icons/projects.svg" width={650} height={450} defaultX={220} defaultY={60}>
-        <div class="projects-list">
-
-          <div class="project-item">
-            <div class="project-icon">
-              <img src="/outeredge-logo-white-circle-green-dot-black-fill.png" alt="OuterLayer logo" />
-            </div>
-            <div class="project-content">
-              <h3 class="project-name">OuterLayer</h3>
-              <p class="project-description">
-                Building and deploying production-ready AI agents for mid-market and enterprise sales teams. Purpose-built agents, context engineering, and end-to-end deployment — turning AI potential into revenue impact.
-              </p>
-              <div class="project-links">
-                <a href="https://thebullpen.ai/" class="classic-link classic-link--external" target="_blank" rel="noopener noreferrer">Site</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="project-item">
-            <div class="project-icon">
-              <img src="/startingit-agent-logo.png" alt="The Bullpen logo" />
-            </div>
-            <div class="project-content">
-              <h3 class="project-name">The Bullpen</h3>
-              <p class="project-description">
-                AI platform for middle-market deal teams. Secure, compliant AI tailored to private files and workflows — internal research, external research, and team collaboration.
-              </p>
-              <div class="project-links">
-                <a href="https://thebullpen.ai/" class="classic-link classic-link--external" target="_blank" rel="noopener noreferrer">Site</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="project-item">
-            <div class="project-icon">
-              <img src="/startingit-logo-png-new.png" alt="StartingIt logo" />
-            </div>
-            <div class="project-content">
-              <h3 class="project-name">StartingIt</h3>
-              <p class="project-description">
-                Your AI co-founder. From idea to revenue — StartIt generates personalized startup ideas, BuildIt helps you ship an MVP in a weekend, and GrowIt creates custom growth strategies.
-              </p>
-              <div class="project-links">
-                <a href="https://www.startingit.ai/" class="classic-link classic-link--external" target="_blank" rel="noopener noreferrer">Site</a>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </Window>
-
-      <!-- Writing Window -->
-      <Window id="writing" title="Writing" toolbar="editor" statusText="Coming soon" icon="/images/icons/writing.svg" width={650} height={400} defaultX={260} defaultY={80}>
-        <div class="writing-list">
-          <div class="writing-empty">
-            <p>Articles coming soon.</p>
-            <p class="writing-empty-sub">Thoughts on AI agents, enterprise sales, and building at the intersection of both.</p>
-          </div>
-        </div>
-      </Window>
-
-      <!-- Contact Window -->
-      <Window id="contact" title="Inbox - Contact" toolbar="email" statusText="Connected" icon="/images/icons/contact.svg" width={650} height={340} defaultX={300} defaultY={100}>
-        <div class="contact-list">
-          <!-- PLACEHOLDER: Update with your actual links -->
-
-          <div class="contact-item">
-            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-              <polyline points="22,6 12,13 2,6"/>
-            </svg>
-            <a href="mailto:ryanlynn@umich.edu" class="classic-link">ryanlynn@umich.edu</a>
-          </div>
-
-          <div class="contact-item">
-            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/>
-              <circle cx="4" cy="4" r="2"/>
-            </svg>
-            <a href="https://www.linkedin.com/in/ryan-lynn-08b089106/" class="classic-link classic-link--external" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-          </div>
-
-          <div class="contact-item">
-            <svg class="contact-icon" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-            </svg>
-            <a href="https://x.com/ryan_lynn_" class="classic-link classic-link--external" target="_blank" rel="noopener noreferrer">@ryan_lynn_</a>
-          </div>
-
-          <div class="contact-item">
-            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/>
-            </svg>
-            <a href="https://github.com/ryanlynn1" class="classic-link classic-link--external" target="_blank" rel="noopener noreferrer">GitHub</a>
-          </div>
-        </div>
-
-        <div class="contact-cta">
-          <Button href="mailto:ryanlynn@umich.edu" variant="primary">
-            Email me
-          </Button>
-        </div>
-      </Window>
-
-      <!-- Notes.txt Easter Egg Window -->
-      <Window id="notes" title="Notes.txt - Notepad" toolbar="notepad" statusText="Ln 1, Col 1" icon="/images/icons/notes.svg" width={650} height={380} defaultX={340} defaultY={120}>
-        <pre class="notes-content">
-// Notes.txt
-// =========
-
-Thanks for poking around RyanOS.
-
-A few things about me that didn't fit
-in the other windows:
-
-- Grew up in an entrepreneurial household.
-  Dad was a tech entrepreneur during the
-  early internet days. Mom ran a home goods
-  store on Main Street. Starting things
-  was just normal in our house.
-
-- Was the kid running garage sales and
-  getting in trouble for reselling Wacky
-  Packages to classmates in 4th grade.
-
-- Spent 7 years in corporate America
-  building the toolkit I knew I'd need.
-  Grant Thornton -> SS&C Intralinks ->
-  Michigan Ross MBA.
-
-- The AI revolution was the moment I'd
-  been waiting for. Couldn't not make
-  the leap.
-
-Some things I believe:
-- Ship early, iterate often
-- Enterprise doesn't have to mean slow
-- The best products solve problems people
-  didn't know they could solve
-- Always be building
-
-Want to chat? Open the Contact window
-or email ryanlynn@umich.edu
-
-- Ryan
-
-P.S. Try the Terminal icon for
-a command prompt Easter egg.
-        </pre>
-      </Window>
-
-      <!-- Terminal (Easter Egg) -->
-      <Window id="terminal" title="Command Prompt" toolbar="none" icon="/images/icons/terminal.svg" width={560} height={380} defaultX={200} defaultY={50}>
-        <div class="terminal">
-          <div class="terminal-output" id="terminal-output">
-            <pre>RyanOS Terminal v1.0
-Type 'help' for available commands.
-
-</pre>
-          </div>
-          <div class="terminal-input-line">
-            <span class="terminal-prompt">C:\RYAN&gt;</span>
-            <input type="text" class="terminal-input" id="terminal-input"
-                   autocomplete="off" spellcheck="false" aria-label="Terminal input" />
-          </div>
-        </div>
-      </Window>
-
-      <!-- Calculator (Easter Egg) -->
-      <Window id="calc" title="Calculator" toolbar="none" icon="/images/icons/calculator.svg" width={240} height={340} defaultX={500} defaultY={100}>
-        <div class="calculator" id="calculator">
-          <input type="text" class="calc-display" id="calc-display" readonly value="0" aria-label="Calculator display" />
-          <div class="calc-buttons">
-            <button class="calc-btn calc-btn--fn" data-action="clear">C</button>
-            <button class="calc-btn calc-btn--fn" data-action="backspace">&larr;</button>
-            <button class="calc-btn calc-btn--fn" data-action="percent">%</button>
-            <button class="calc-btn calc-btn--op" data-action="divide">&divide;</button>
-
-            <button class="calc-btn" data-action="digit" data-value="7">7</button>
-            <button class="calc-btn" data-action="digit" data-value="8">8</button>
-            <button class="calc-btn" data-action="digit" data-value="9">9</button>
-            <button class="calc-btn calc-btn--op" data-action="multiply">&times;</button>
-
-            <button class="calc-btn" data-action="digit" data-value="4">4</button>
-            <button class="calc-btn" data-action="digit" data-value="5">5</button>
-            <button class="calc-btn" data-action="digit" data-value="6">6</button>
-            <button class="calc-btn calc-btn--op" data-action="subtract">&minus;</button>
-
-            <button class="calc-btn" data-action="digit" data-value="1">1</button>
-            <button class="calc-btn" data-action="digit" data-value="2">2</button>
-            <button class="calc-btn" data-action="digit" data-value="3">3</button>
-            <button class="calc-btn calc-btn--op" data-action="add">+</button>
-
-            <button class="calc-btn calc-btn--wide" data-action="digit" data-value="0">0</button>
-            <button class="calc-btn" data-action="decimal">.</button>
-            <button class="calc-btn calc-btn--op calc-btn--equals" data-action="equals">=</button>
-          </div>
-        </div>
-      </Window>
+  <div class="container home-grid">
+    <div class="posts-col">
+      {rest.map((post) => <PostRow post={post} />)}
+      <a class="accent-link view-all" href="/posts">
+        View all posts <span class="arrow" aria-hidden="true">→</span>
+      </a>
     </div>
-  </Desktop>
+    <div class="rail-col">
+      <WorkRail />
+    </div>
+  </div>
 </Layout>
 
+<style>
+  .hero-title {
+    font-size: clamp(2.4rem, 6vw, 3.5rem);
+    font-weight: 700;
+    letter-spacing: -0.035em;
+    line-height: 1.04;
+    color: var(--text-strong);
+  }
+  .hero-intro {
+    margin-top: 24px;
+    max-width: 40rem;
+    font-size: 1.15rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+  }
 
-<script>
-  import '../scripts/window-manager.js';
-  import '../scripts/keyboard.js';
-  import '../scripts/terminal.js';
-  import '../scripts/calculator.js';
-</script>
+  .latest {
+    margin-top: clamp(48px, 8vw, 84px);
+  }
+  .latest-title {
+    margin-top: 14px;
+    font-size: clamp(1.5rem, 3vw, 1.85rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    color: var(--text-strong);
+  }
+  .latest-title a {
+    transition: color 0.15s ease;
+  }
+  .latest-title a:hover {
+    color: var(--accent);
+  }
+  .latest-excerpt {
+    margin-top: 12px;
+    max-width: 42rem;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+  }
+  .latest .accent-link {
+    margin-top: 18px;
+    font-size: 1rem;
+  }
+
+  .home-grid {
+    margin-top: 48px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 320px;
+    gap: 56px;
+    align-items: start;
+  }
+  .view-all {
+    margin-top: 30px;
+    font-size: 0.95rem;
+  }
+
+  @media (max-width: 860px) {
+    .home-grid {
+      grid-template-columns: 1fr;
+      gap: 44px;
+    }
+  }
+</style>

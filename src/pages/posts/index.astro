@@ -1,0 +1,75 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import PostRow from '../../components/PostRow.astro';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.publishedAt.getTime() - a.data.publishedAt.getTime()
+);
+
+const years = [...new Set(posts.map((p) => p.data.publishedAt.getUTCFullYear()))].sort(
+  (a, b) => b - a
+);
+const byYear = years.map((year) => ({
+  year,
+  items: posts.filter((p) => p.data.publishedAt.getUTCFullYear() === year),
+}));
+---
+
+<Layout
+  title="Posts"
+  description="Every essay on building production AI agents, real-world implementation, and what’s next."
+>
+  <section class="container archive">
+    <span class="eyebrow">Archive</span>
+    <h1 class="archive-title">Writing.</h1>
+    <p class="archive-intro">
+      Every piece in chronological order. Start anywhere, or follow the years below.
+    </p>
+
+    {
+      byYear.map((group) => (
+        <section class="year-group">
+          <h2 class="year-label">{group.year}</h2>
+          <div class="year-posts">
+            {group.items.map((post) => (
+              <PostRow post={post} showCategory />
+            ))}
+          </div>
+        </section>
+      ))
+    }
+  </section>
+</Layout>
+
+<style>
+  .archive-title {
+    margin-top: 14px;
+    font-size: clamp(2.2rem, 5.5vw, 3.2rem);
+    font-weight: 700;
+    letter-spacing: -0.035em;
+    line-height: 1.04;
+    color: var(--text-strong);
+  }
+  .archive-intro {
+    margin-top: 18px;
+    max-width: 38rem;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+  }
+  .year-group {
+    margin-top: 56px;
+  }
+  .year-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--text-faint);
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+  }
+  .year-posts {
+    margin-top: 8px;
+  }
+</style>

@@ -1,0 +1,43 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Newsletter"
+  description="Field notes on building production AI agents — coming soon."
+>
+  <section class="container newsletter">
+    <span class="eyebrow">Newsletter</span>
+    <h1 class="newsletter-title">Coming soon.</h1>
+    <p class="newsletter-intro">
+      A newsletter is on the way — field notes on building production AI agents, real-world
+      implementation, and what’s next, delivered to your inbox. In the meantime, the essays are the
+      best place to start.
+    </p>
+    <a class="accent-link" href="/posts">
+      Read the posts <span class="arrow" aria-hidden="true">→</span>
+    </a>
+  </section>
+</Layout>
+
+<style>
+  .newsletter-title {
+    margin-top: 14px;
+    font-size: clamp(2.4rem, 6vw, 3.5rem);
+    font-weight: 700;
+    letter-spacing: -0.035em;
+    line-height: 1.04;
+    color: var(--text-strong);
+  }
+  .newsletter-intro {
+    margin-top: 22px;
+    max-width: 40rem;
+    font-size: 1.15rem;
+    line-height: 1.65;
+    color: var(--text-muted);
+  }
+  .newsletter .accent-link {
+    margin-top: 26px;
+    font-size: 1rem;
+  }
+</style>

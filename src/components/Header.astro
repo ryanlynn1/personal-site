@@ -1,0 +1,110 @@
+---
+import { site, nav } from '../data/site';
+import ThemeToggle from './ThemeToggle.astro';
+
+const path = Astro.url.pathname;
+function isActive(href: string): boolean {
+  if (href === '/') return path === '/';
+  return path === href || path.startsWith(href + '/');
+}
+---
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="/">
+      <span class="brand-name">{site.name}</span>
+      <span class="brand-tagline">{site.tagline}</span>
+    </a>
+
+    <nav class="site-nav" aria-label="Primary">
+      <ul class="nav-list">
+        {
+          nav.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                class:list={['nav-link', { active: isActive(item.href) }]}
+                aria-current={isActive(item.href) ? 'page' : undefined}
+              >
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <ThemeToggle />
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    padding-block: 28px;
+  }
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  .brand {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    line-height: 1.3;
+  }
+  .brand-name {
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--text-strong);
+    letter-spacing: -0.01em;
+  }
+  .brand-tagline {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+
+  .site-nav {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .nav-list {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .nav-link {
+    font-size: 0.92rem;
+    color: var(--text-muted);
+    transition: color 0.15s ease;
+  }
+  .nav-link:hover {
+    color: var(--text-strong);
+  }
+  .nav-link.active {
+    color: var(--text-strong);
+    font-weight: 500;
+  }
+
+  @media (max-width: 560px) {
+    .site-header {
+      padding-block: 22px;
+    }
+    .brand-tagline {
+      display: none;
+    }
+    .site-nav {
+      gap: 14px;
+    }
+    .nav-list {
+      gap: 16px;
+    }
+    .nav-link {
+      font-size: 0.85rem;
+    }
+  }
+</style>

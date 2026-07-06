@@ -1,0 +1,258 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import { formatDate, categoryLabel } from '../../lib/categories';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { data } = post;
+const { Content } = await render(post);
+const iso = data.publishedAt.toISOString().slice(0, 10);
+const description = data.metaDescription ?? data.excerpt;
+---
+
+<Layout title={data.title} description={description}>
+  <article class="post">
+    <a class="back-link" href="/posts">
+      <span aria-hidden="true">←</span> All posts
+    </a>
+
+    <header class="post-header">
+      <span class="post-eyebrow">{categoryLabel(data.category)}</span>
+      <h1 class="post-h1">{data.title}</h1>
+      <div class="post-submeta">
+        <time datetime={iso}>{formatDate(data.publishedAt)}</time>
+        <span class="dot" aria-hidden="true">·</span>
+        <span>{data.readTimeMinutes} min read</span>
+      </div>
+      <div class="post-author">
+        {
+          data.authorAvatar && (
+            <img class="author-avatar" src={data.authorAvatar} alt={data.author} width="42" height="42" />
+          )
+        }
+        <div class="author-meta">
+          <span class="author-name">{data.author}</span>
+          {data.authorTitle && <span class="author-title">{data.authorTitle}</span>}
+        </div>
+      </div>
+    </header>
+
+    <div class="prose">
+      <Content />
+    </div>
+
+    <footer class="post-footer">
+      <a class="accent-link" href="/posts">
+        <span aria-hidden="true">←</span> Back to all posts
+      </a>
+    </footer>
+  </article>
+</Layout>
+
+<style>
+  .post {
+    max-width: var(--maxw-prose);
+    margin: 0 auto;
+    padding-inline: 24px;
+  }
+  .back-link {
+    display: inline-block;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    transition: color 0.15s ease;
+  }
+  .back-link:hover {
+    color: var(--text-strong);
+  }
+
+  .post-header {
+    margin-top: 26px;
+    padding-bottom: 32px;
+    margin-bottom: 40px;
+    border-bottom: 1px solid var(--border);
+  }
+  .post-eyebrow {
+    font-size: 0.74rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .post-h1 {
+    margin-top: 14px;
+    font-size: clamp(1.9rem, 4.5vw, 2.6rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    color: var(--text-strong);
+  }
+  .post-submeta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 18px;
+    font-size: 0.78rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+  }
+  .post-author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 24px;
+  }
+  .author-avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid var(--border);
+  }
+  .author-meta {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.35;
+  }
+  .author-name {
+    font-weight: 600;
+    font-size: 0.92rem;
+    color: var(--text-strong);
+  }
+  .author-title {
+    font-size: 0.83rem;
+    color: var(--text-muted);
+  }
+
+  .post-footer {
+    margin-top: 56px;
+    padding-top: 28px;
+    border-top: 1px solid var(--border);
+  }
+</style>
+
+<style is:global>
+  .prose {
+    font-size: 1.0625rem;
+    line-height: 1.75;
+    color: var(--text);
+  }
+  .prose > :first-child {
+    margin-top: 0;
+  }
+  .prose p {
+    margin-block: 1.25em;
+  }
+  .prose h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+    margin-top: 2em;
+    margin-bottom: 0.6em;
+    color: var(--text-strong);
+  }
+  .prose h3 {
+    font-size: 1.2rem;
+    font-weight: 650;
+    line-height: 1.3;
+    margin-top: 1.7em;
+    margin-bottom: 0.5em;
+    color: var(--text-strong);
+  }
+  .prose a {
+    color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    text-decoration-thickness: 1px;
+    transition: color 0.15s ease;
+  }
+  .prose a:hover {
+    color: var(--accent-hover);
+  }
+  .prose strong {
+    color: var(--text-strong);
+    font-weight: 650;
+  }
+  .prose ul,
+  .prose ol {
+    margin-block: 1.25em;
+    padding-left: 1.35em;
+  }
+  .prose li {
+    margin-block: 0.45em;
+  }
+  .prose li::marker {
+    color: var(--text-faint);
+  }
+  .prose blockquote {
+    margin-block: 1.6em;
+    padding: 2px 0 2px 20px;
+    border-left: 3px solid var(--accent);
+    color: var(--text-muted);
+    font-style: italic;
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+  .prose blockquote p {
+    margin-block: 0.4em;
+  }
+  .prose img {
+    width: 100%;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-block: 1.8em;
+  }
+  .prose hr {
+    border: 0;
+    border-top: 1px solid var(--border);
+    margin-block: 2.4em;
+  }
+  .prose code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.9em;
+    background: var(--hover-surface);
+    padding: 0.15em 0.4em;
+    border-radius: 5px;
+  }
+  .prose pre {
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px 20px;
+    overflow-x: auto;
+    margin-block: 1.6em;
+  }
+  .prose pre code {
+    background: none;
+    padding: 0;
+    font-size: 0.9rem;
+  }
+  .prose .table-wrap,
+  .prose table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    border-collapse: collapse;
+    margin-block: 1.7em;
+    font-size: 0.95rem;
+  }
+  .prose th,
+  .prose td {
+    border: 1px solid var(--border);
+    padding: 10px 14px;
+    text-align: left;
+    vertical-align: top;
+  }
+  .prose th {
+    background: var(--hover-surface);
+    font-weight: 600;
+    color: var(--text-strong);
+    white-space: nowrap;
+  }
+</style>
