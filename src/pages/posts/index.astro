@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import PostRow from '../../components/PostRow.astro';
+import { categoryLabel } from '../../lib/categories';
 
 const posts = (await getCollection('blog')).sort(
   (a, b) => b.data.publishedAt.getTime() - a.data.publishedAt.getTime()
@@ -14,6 +15,11 @@ const byYear = years.map((year) => ({
   year,
   items: posts.filter((p) => p.data.publishedAt.getUTCFullYear() === year),
 }));
+
+// Categories present, in canonical order
+const order = ['ai-strategy', 'implementation', 'industry-insights', 'case-analysis', 'leadership', 'news'];
+const present = new Set(posts.map((p) => p.data.category));
+const categories = order.filter((c) => present.has(c));
 ---
 
 <Layout
@@ -24,8 +30,21 @@ const byYear = years.map((year) => ({
     <span class="eyebrow">Archive</span>
     <h1 class="archive-title">Writing.</h1>
     <p class="archive-intro">
-      Every piece in chronological order. Start anywhere, or follow the years below.
+      {posts.length} pieces on building production AI agents. Filter by topic, or follow the years below.
     </p>
+
+    <div class="filter-chips" aria-label="Filter posts by category">
+      <button class="chip is-active" data-cat="all" type="button">All</button>
+      {
+        categories.map((c) => (
+          <button class="chip" data-cat={c} type="button">
+            {categoryLabel(c)}
+          </button>
+        ))
+      }
+    </div>
+
+    <p class="no-results" hidden>No posts in this topic yet.</p>
 
     {
       byYear.map((group) => (
@@ -58,8 +77,41 @@ const byYear = years.map((year) => ({
     line-height: 1.6;
     color: var(--text-muted);
   }
+
+  .filter-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 28px;
+  }
+  .chip {
+    padding: 7px 15px;
+    border-radius: 999px;
+    border: 1px solid var(--border-strong);
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    background: transparent;
+    transition: color 0.15s ease, border-color 0.15s ease, background-color 0.15s ease;
+  }
+  .chip:hover {
+    color: var(--text-strong);
+    border-color: var(--text-faint);
+  }
+  .chip.is-active {
+    color: var(--accent);
+    border-color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 13%, transparent);
+    font-weight: 600;
+  }
+
+  .no-results {
+    margin-top: 40px;
+    color: var(--text-muted);
+    font-size: 1.05rem;
+  }
+
   .year-group {
-    margin-top: 56px;
+    margin-top: 48px;
   }
   .year-label {
     font-size: 0.8rem;
@@ -73,3 +125,34 @@ const byYear = years.map((year) => ({
     margin-top: 8px;
   }
 </style>
+
+<script is:inline>
+  (function () {
+    const chips = Array.from(document.querySelectorAll('.filter-chips .chip'));
+    const groups = Array.from(document.querySelectorAll('.year-group'));
+    const noResults = document.querySelector('.no-results');
+    if (!chips.length) return;
+
+    function apply(cat) {
+      let totalVisible = 0;
+      groups.forEach((group) => {
+        let visibleInGroup = 0;
+        group.querySelectorAll('.post-row[data-category]').forEach((row) => {
+          const show = cat === 'all' || row.getAttribute('data-category') === cat;
+          row.style.display = show ? '' : 'none';
+          if (show) visibleInGroup++;
+        });
+        group.style.display = visibleInGroup > 0 ? '' : 'none';
+        totalVisible += visibleInGroup;
+      });
+      if (noResults) noResults.hidden = totalVisible > 0;
+    }
+
+    chips.forEach((chip) => {
+      chip.addEventListener('click', () => {
+        chips.forEach((c) => c.classList.toggle('is-active', c === chip));
+        apply(chip.getAttribute('data-cat'));
+      });
+    });
+  })();
+</script>

@@ -12,7 +12,7 @@ const { data } = post;
 const iso = data.publishedAt.toISOString().slice(0, 10);
 ---
 
-<article class="post-row">
+<article class="post-row" data-category={data.category}>
   <div class="post-meta">
     {showCategory && <span class="post-cat">{categoryLabel(data.category)}</span>}
     <time datetime={iso}>{formatDate(data.publishedAt)}</time>
