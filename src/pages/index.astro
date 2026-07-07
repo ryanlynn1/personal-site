@@ -4,6 +4,7 @@ import Layout from '../layouts/Layout.astro';
 import WorkRail from '../components/WorkRail.astro';
 import PostRow from '../components/PostRow.astro';
 import { site } from '../data/site';
+import { personSchema, websiteSchema } from '../lib/schema';
 
 const posts = (await getCollection('blog')).sort(
   (a, b) => b.data.publishedAt.getTime() - a.data.publishedAt.getTime()
@@ -12,7 +13,7 @@ const latest = posts[0];
 const rest = posts.slice(1, 6);
 ---
 
-<Layout>
+<Layout jsonLd={[personSchema(), websiteSchema()]}>
   <section class="container hero">
     <h1 class="hero-title">{site.heroTitle}</h1>
     <p class="hero-intro">{site.heroIntro}</p>

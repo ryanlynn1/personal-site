@@ -8,12 +8,14 @@ interface Props {
   title?: string;
   description?: string;
   ogImage?: string;
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
 }
 
-const { title, description = site.description, ogImage = site.ogImage } = Astro.props;
+const { title, description = site.description, ogImage = site.ogImage, jsonLd } = Astro.props;
+const jsonLdItems = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
 
 const pageTitle = title ? `${title} · ${site.name}` : `${site.name} — ${site.tagline}`;
-const canonical = new URL(Astro.url.pathname, site.url).href;
+const canonical = new URL(Astro.url.pathname.replace(/(.)\/$/, '$1'), site.url).href;
 const ogImageUrl = new URL(ogImage, site.url).href;
 ---
 
@@ -53,6 +55,12 @@ const ogImageUrl = new URL(ogImage, site.url).href;
         } catch (e) {}
       })();
     </script>
+
+    {
+      jsonLdItems.map((item) => (
+        <script type="application/ld+json" set:html={JSON.stringify(item).replace(/</g, '\\u003c')} />
+      ))
+    }
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>

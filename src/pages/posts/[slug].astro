@@ -2,6 +2,7 @@
 import { getCollection, render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import { formatDate, categoryLabel } from '../../lib/categories';
+import { blogPostingSchema, breadcrumbSchema } from '../../lib/schema';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
@@ -13,9 +14,18 @@ const { data } = post;
 const { Content } = await render(post);
 const iso = data.publishedAt.toISOString().slice(0, 10);
 const description = data.metaDescription ?? data.excerpt;
+
+const jsonLd = [
+  blogPostingSchema(post, Astro.url.pathname),
+  breadcrumbSchema([
+    { name: 'Home', path: '/' },
+    { name: 'Posts', path: '/posts' },
+    { name: data.title, path: Astro.url.pathname },
+  ]),
+];
 ---
 
-<Layout title={data.title} description={description}>
+<Layout title={data.title} description={description} jsonLd={jsonLd}>
   <article class="post">
     <a class="back-link" href="/posts">
       <span aria-hidden="true">←</span> All posts

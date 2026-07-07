@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import PostRow from '../../components/PostRow.astro';
 import { categoryLabel } from '../../lib/categories';
+import { blogSchema, breadcrumbSchema } from '../../lib/schema';
 
 const posts = (await getCollection('blog')).sort(
   (a, b) => b.data.publishedAt.getTime() - a.data.publishedAt.getTime()
@@ -20,11 +21,20 @@ const byYear = years.map((year) => ({
 const order = ['ai-strategy', 'implementation', 'industry-insights', 'case-analysis', 'leadership', 'news'];
 const present = new Set(posts.map((p) => p.data.category));
 const categories = order.filter((c) => present.has(c));
+
+const jsonLd = [
+  blogSchema(posts),
+  breadcrumbSchema([
+    { name: 'Home', path: '/' },
+    { name: 'Posts', path: '/posts' },
+  ]),
+];
 ---
 
 <Layout
   title="Posts"
   description="Every essay on building production AI agents, real-world implementation, and what’s next."
+  jsonLd={jsonLd}
 >
   <section class="container archive">
     <span class="eyebrow">Archive</span>
